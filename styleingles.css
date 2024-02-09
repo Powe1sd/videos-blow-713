@@ -1,0 +1,335 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.pronoun {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  color: black;
+  text-align: justify;
+}
+.boton-venta-cafe {
+  position: fixed;
+  bottom: 50px;
+  right: 15px;
+  z-index: 9999;
+  font-size: 30px;
+  width: 29%;
+  height: 12%;
+  cursor: pointer;
+  background-color: gold;
+  color: red;
+  animation: luciernaga 3s ease-in-out infinite;
+  -webkit-animation: luciernaga 3s ease-in-out infinite;
+}
+
+.custom-swal-content {
+  color: red; /* Cambia el color del texto a rojo */
+}
+
+.whatsapp-btn {
+  position: fixed;
+  bottom: 480px;
+  right: 10px;
+  background-color: #25d366;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  -webkit-transition: transform 0.2s, box-shadow 0.2s;
+  -moz-transition: transform 0.2s, box-shadow 0.2s;
+  -ms-transition: transform 0.2s, box-shadow 0.2s;
+  -o-transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+  .boton-venta-cafe {
+    position: fixed;
+    bottom: 50px;
+    right: 5px;
+    z-index: 9999;
+    font-size: 30px; /* Disminuir el tamaño de la fuente para dispositivos móviles */
+    width: 60%;
+    height: 80px; /* Ajustar el ancho del botón para dispositivos móviles */
+  }
+
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 135px; /* Ajustar la posición del botón de WhatsApp para dispositivos móviles */
+    right: 10px;
+    padding: 8px 12px; /* Ajustar el relleno del botón de WhatsApp para dispositivos móviles */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Reducir la sombra del botón de WhatsApp para dispositivos móviles */
+  }
+}
+
+/* Definir la animación de luciérnaga */
+@keyframes luciernaga {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.text {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.divider {
+  flex: 1;
+  border-top: 1px solid #ccc;
+  margin: 0 5px; /* Ajuste de margen izquierdo y derecho */
+}
+
+.audio {
+  margin-left: auto; /* Ajuste de margen izquierdo para que estén en la esquina */
+  margin-right: 5px; /* Ajuste de margen derecho */
+}
+
+.question-container {
+  margin-bottom: 20px;
+}
+
+.options-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+video {
+  display: block; /* Hace que el video sea un elemento de bloque */
+  margin: 0 auto;
+  border: 1px solid black; /* Centra horizontalmente el video */
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  display: block; /* Hace que el video sea un elemento de bloque */
+  margin: 0 auto;
+  border: 1px solid black; /* Centra horizontalmente el video */
+  width: 80%;
+  height: 20%;
+  background-color: black;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.curso {
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+.free {
+  position: fixed;
+  background-color: blue;
+  color: white;
+  animation: luciernaga 2s ease-in-out infinite;
+  -webkit-animation: luciernaga 2s ease-in-out infinite;
+}
+
+.corner-text {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: transparent; /* Fondo transparente */
+  color: red; /* Color de texto rojo */
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+}
+
+.section {
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 30px;
+  padding: 900;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .section {
+    padding: 12px; /* Ajusta el relleno para dispositivos móviles */
+    margin: 12px; /* Ajusta el margen para dispositivos móviles */
+  }
+}
+
+h2 {
+  color: #3498db;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+li {
+  margin-bottom: 45px;
+  font-size: 18px;
+  color: #555;
+  text-align: justify;
+}
+
+/* Agregamos estilos para enlaces */
+a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #2980b9;
+}
+
+.inicio {
+  position: fixed;
+  font-size: 20px;
+  color: red;
+  background-color: black;
+  /* Ajusta esta cantidad para cambiar la distancia desde abajo */
+  bottom: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la parte inferior */
+  left: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la izquierda */
+  cursor: pointer;
+}
+
+.videos {
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+.video3 {
+  width: 80%;
+  height: 30%;
+  background-color: black;
+  margin: 0 auto;
+  display: block;
+}
+
+p {
+  text-align: justify;
+  font-family: "Times New Roman", Times, serif;
+  color: black;
+}
+
+.category-section {
+  text-align: center;
+  position: fixed; /* Fijar la posición */
+  top: 0; /* Posición superior */
+  left: 0; /* Posición izquierda */
+  background-color: black; /* Color de fondo */
+  width: 100%; /* Ancho al 100% */
+  padding: 10px 0; /* Espaciado interno */
+  z-index: 999; /* Índice z para asegurar que esté por encima de otros elementos */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+  border-bottom: 1px solid white;
+}
+
+.category-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropbtn {
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  max-height: 200px; /* Altura máxima */
+  overflow-y: auto; /* Agregar barra de desplazamiento vertical */
+  z-index: 1;
+  font-size: 15px;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: blue;
+}
+
+.category-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* secion contacto */
+.contact-section {
+  background-color: black;
+  color: white;
+  padding: 2px;
+  bottom: 0;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.social-media {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.social-media li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.social-media a {
+  color: white;
+  text-decoration: none;
+}
