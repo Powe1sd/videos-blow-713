@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question Game</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css"
+    />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        text-align: center;
+        margin-top: 50px;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 30px;
+      }
+      #question {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .options {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .option {
+        margin: 0 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .option:hover {
+        background-color: #45a049;
+      }
+      #timer {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      #downloadButton {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      #downloadButton:hover {
+        background-color: #0056b3;
+      }
+
+      .inicio {
+        position: fixed;
+        font-size: 20px;
+        color: red;
+        background-color: black;
+        /* Ajusta esta cantidad para cambiar la distancia desde abajo */
+        bottom: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la parte inferior */
+        left: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la izquierda */
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Question Game</h1>
+      <div id="question"></div>
+      <div class="options" id="options"></div>
+      <div id="timer">10</div>
+      <button id="downloadButton" style="display: none">
+        Download Questions and Answers
+      </button>
+    </div>
+
+    <a href="https://tempssll.github.io/Blow-713/Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Blob.js/2.1.2/Blob.js"></script>
+    <script>
+      const questions = [
+        {
+          question: "What is the capital of France?",
+          options: ["Paris", "London", "Berlin", "Rome"],
+          answer: "Paris",
+        },
+        {
+          question: "What is the largest mammal?",
+          options: ["Elephant", "Blue whale", "Giraffe", "Lion"],
+          answer: "Blue whale",
+        },
+        {
+          question: "How many continents are there?",
+          options: ["Five", "Six", "Seven", "Eight"],
+          answer: "Seven",
+        },
+        {
+          question: "Who wrote 'Romeo and Juliet'?",
+          options: [
+            "William Shakespeare",
+            "Charles Dickens",
+            "Jane Austen",
+            "Mark Twain",
+          ],
+          answer: "William Shakespeare",
+        },
+        {
+          question: "What is the chemical symbol for water?",
+          options: ["H2O", "CO2", "NaCl", "O2"],
+          answer: "H2O",
+        },
+      ];
+
+      let currentQuestionIndex = 0;
+      let correctAnswers = 0;
+      let incorrectAnswers = 0;
+      let timer;
+
+      function displayQuestion() {
+        const questionElement = document.getElementById("question");
+        const optionsElement = document.getElementById("options");
+        const currentQuestion = questions[currentQuestionIndex];
+
+        questionElement.textContent = currentQuestion.question;
+        optionsElement.innerHTML = "";
+
+        currentQuestion.options.forEach((option, index) => {
+          const optionButton = document.createElement("button");
+          optionButton.textContent = option;
+          optionButton.className = "option";
+          optionButton.onclick = () => checkAnswer(option);
+          optionsElement.appendChild(optionButton);
+        });
+
+        startTimer();
+      }
+
+      function startTimer() {
+        let timeLeft = 10;
+        timer = setInterval(() => {
+          document.getElementById("timer").textContent = timeLeft;
+          timeLeft--;
+          if (timeLeft < 0) {
+            clearInterval(timer);
+            currentQuestionIndex++;
+            incorrectAnswers++;
+            if (currentQuestionIndex < questions.length) {
+              displayQuestion();
+            } else {
+              endGame();
+            }
+          }
+        }, 1000);
+      }
+
+      function checkAnswer(selectedAnswer) {
+        const currentQuestion = questions[currentQuestionIndex];
+        if (selectedAnswer === currentQuestion.answer) {
+          correctAnswers++;
+        } else {
+          incorrectAnswers++;
+        }
+        clearInterval(timer);
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          displayQuestion();
+        } else {
+          endGame();
+        }
+      }
+
+      function endGame() {
+        const downloadButton = document.getElementById("downloadButton");
+        downloadButton.style.display = "block";
+        downloadButton.onclick = downloadQuestionsAndAnswers;
+        const container = document.querySelector(".container");
+        container.innerHTML += `<h2>Correct Answers: ${correctAnswers}</h2>`;
+        container.innerHTML += `<h2>Incorrect Answers: ${incorrectAnswers}</h2>`;
+
+        // Mostrar el mensaje de SweetAlert
+        if (correctAnswers > 3) {
+          swal("Congratulations!", "You passed the game!", "success");
+        } else {
+          swal("Sorry!", "You lost the game!", "error");
+        }
+      }
+
+      function downloadQuestionsAndAnswers() {
+        let qaContent = "Question\tAnswer\n";
+        questions.forEach((question, index) => {
+          qaContent += `${question.question}\t${question.answer}\n`;
+        });
+        const blob = new Blob([qaContent], {
+          type: "text/plain;charset=utf-8",
+        });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "questions_and_answers.txt";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+
+      window.onload = displayQuestion;
+    </script>
+  </body>
+</html>

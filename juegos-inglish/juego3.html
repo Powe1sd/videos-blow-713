@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../logo/logo.png" type="image/x-icon" />
+    <title>Fill in the Blanks Game</title>
+    <!-- SweetAlert CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.7/sweetalert2.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f6ff; /* Fondo azul claro */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        max-width: 600px;
+        text-align: center;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #007bff; /* Azul */
+        margin-bottom: 20px;
+      }
+      #sentence {
+        margin-bottom: 20px;
+        font-size: 18px;
+      }
+      .options-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+      }
+      .option {
+        padding: 10px 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 5px;
+      }
+      .option:hover {
+        background-color: #d3d3d3;
+      }
+      .option.selected {
+        background-color: #ccc;
+      }
+      #result {
+        font-weight: bold;
+        margin-top: 20px;
+      }
+      .score {
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      #timer {
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      .warning {
+        color: #dc3545; /* Rojo */
+        font-size: 14px;
+        margin-top: 10px;
+      }
+      button {
+        background-color: #007bff; /* Azul */
+        color: #fff; /* Blanco */
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #0056b3; /* Azul más oscuro */
+      }
+
+      .inicio {
+        position: fixed;
+        font-size: 20px;
+        color: red;
+        background-color: black;
+        /* Ajusta esta cantidad para cambiar la distancia desde abajo */
+        bottom: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la parte inferior */
+        left: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la izquierda */
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="https://tempssll.github.io/Blow-713/Inglish-free.html">
+        <button class="inicio">INICIO</button>
+      </a>
+
+      <h1>Fill in the Blanks Game</h1>
+      <p id="sentence">
+        I like to
+        <span id="blank" ondrop="drop(event)" ondragover="allowDrop(event)"
+          >____</span
+        >
+        in the park.
+      </p>
+      <div class="options-container" id="optionsContainer">
+        <!-- Opciones se generarán aquí -->
+      </div>
+      <p id="result"></p>
+      <p class="score" id="score">Correctas: 0 | Incorrectas: 0</p>
+      <p id="timer">Tiempo restante: 30 segundos</p>
+      <p id="warning" class="warning">
+        ¡Arrastra la palabra para completar la oración!
+      </p>
+      <button onclick="startGame()">Comenzar</button>
+      <button onclick="resetGame()">Reiniciar</button>
+    </div>
+
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      let questions = [
+        {
+          question:
+            "I like to <span id='blank' ondrop='drop(event)' ondragover='allowDrop(event)'>____</span> in the park.",
+          answer: "dance",
+        },
+        {
+          question:
+            "She enjoys <span id='blank' ondrop='drop(event)' ondragover='allowDrop(event)'>____</span> to music.",
+          answer: "sing",
+        },
+        {
+          question:
+            "He often <span id='blank' ondrop='drop(event)' ondragover='allowDrop(event)'>____</span> in the river.",
+          answer: "swim",
+        },
+        {
+          question:
+            "We like to <span id='blank' ondrop='drop(event)' ondragover='allowDrop(event)'>____</span> in the ocean.",
+          answer: "swim",
+        },
+        {
+          question:
+            "They <span id='blank' ondrop='drop(event)' ondragover='allowDrop(event)'>____</span> every morning.",
+          answer: "run",
+        },
+        // Agregar más preguntas aquí
+        {
+          question:
+            "She <span id='blank' ondrop='drop(event)' ondragover='allowDrop(event)'>____</span> to school by bus.",
+          answer: "goes",
+        },
+        {
+          question:
+            "He <span id='blank' ondrop='drop(event)' ondragover='allowDrop(event)'>____</span> a book every night.",
+          answer: "reads",
+        },
+        {
+          question:
+            "They <span id='blank' ondrop='drop(event)' ondragover='allowDrop(event)'>____</span> football on Saturdays.",
+          answer: "play",
+        },
+        {
+          question:
+            "We <span id='blank' ondrop='drop(event)' ondragover='allowDrop(event)'>____</span> dinner at 7 o'clock.",
+          answer: "eat",
+        },
+        {
+          question:
+            "She <span id='blank' ondrop='drop(event)' ondragover='allowDrop(event)'>____</span> her dog every morning.",
+          answer: "walks",
+        },
+      ];
+
+      let currentQuestionIndex = 0;
+      let correctAnswers = 0;
+      let incorrectAnswers = 0;
+      let timer;
+
+      function startTimer() {
+        let timeLeft = 30;
+        timer = setInterval(function () {
+          document.getElementById(
+            "timer"
+          ).textContent = `Tiempo restante: ${timeLeft} segundos`;
+          timeLeft--;
+          if (timeLeft < 0) {
+            stopTimer();
+            checkAnswer("");
+          }
+        }, 1000);
+      }
+
+      function stopTimer() {
+        clearInterval(timer);
+        document.getElementById("timer").textContent = "";
+      }
+
+      function checkAnswer(answer) {
+        stopTimer();
+        let question = questions[currentQuestionIndex];
+        let blank = document.getElementById("blank");
+        let sentence = document.getElementById("sentence");
+        let warning = document.getElementById("warning");
+        warning.style.display = "none";
+        if (answer === question.answer) {
+          correctAnswers++;
+        } else {
+          incorrectAnswers++;
+        }
+        document.getElementById(
+          "score"
+        ).textContent = `Correctas: ${correctAnswers} | Incorrectas: ${incorrectAnswers}`;
+        document.getElementById("result").textContent =
+          answer === question.answer ? "¡Correcto!" : "¡Incorrecto!";
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          sentence.innerHTML = questions[currentQuestionIndex].question;
+          generateOptions(); // Generar nuevas opciones
+          startTimer();
+        } else {
+          let message = correctAnswers > 7 ? "¡Ganaste!" : "¡Perdiste!";
+          Swal.fire({
+            title: message,
+            text: `Puntuación: ${correctAnswers}`,
+            icon: correctAnswers > 7 ? "success" : "error",
+            showCancelButton: false,
+            confirmButtonColor: "#007bff" /* Azul */,
+            confirmButtonText: "OK",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              resetGame(); // Reiniciar el juego
+            }
+          });
+        }
+      }
+
+      function startGame() {
+        currentQuestionIndex = 0;
+        correctAnswers = 0;
+        incorrectAnswers = 0;
+        shuffleQuestions(); // Mezclar las preguntas y respuestas al inicio del juego
+        document.getElementById(
+          "score"
+        ).textContent = `Correctas: ${correctAnswers} | Incorrectas: ${incorrectAnswers}`;
+        document.getElementById("result").textContent = "";
+        document.getElementById("sentence").innerHTML =
+          questions[currentQuestionIndex].question;
+        document.getElementById("warning").style.display = "block";
+        generateOptions(); // Generar opciones
+        startTimer();
+      }
+
+      function resetGame() {
+        currentQuestionIndex = 0;
+        correctAnswers = 0;
+        incorrectAnswers = 0;
+        shuffleQuestions(); // Mezclar las preguntas y respuestas al reiniciar el juego
+        document.getElementById(
+          "score"
+        ).textContent = `Correctas: ${correctAnswers} | Incorrectas: ${incorrectAnswers}`;
+        document.getElementById("result").textContent = "";
+        document.getElementById("sentence").innerHTML =
+          questions[currentQuestionIndex].question;
+        document.getElementById("warning").style.display = "block";
+        generateOptions(); // Generar opciones
+        startTimer();
+      }
+
+      function allowDrop(ev) {
+        ev.preventDefault();
+      }
+
+      function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.textContent);
+      }
+
+      function drop(ev) {
+        ev.preventDefault();
+        let data = ev.dataTransfer.getData("text");
+        ev.target.innerHTML = data;
+        ev.target.classList.add("selected");
+        checkAnswer(data.trim());
+      }
+
+      function shuffleQuestions() {
+        for (let i = questions.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [questions[i], questions[j]] = [questions[j], questions[i]];
+        }
+      }
+      function generateOptions() {
+        let optionsContainer = document.getElementById("optionsContainer");
+        optionsContainer.innerHTML = ""; // Limpiar las opciones
+        let currentQuestion = questions[currentQuestionIndex];
+        let allAnswers = [...questions.map((question) => question.answer)]; // Obtener todas las respuestas de todas las preguntas
+        let uniqueAnswers = [...new Set(allAnswers)]; // Eliminar respuestas duplicadas
+        uniqueAnswers.splice(uniqueAnswers.indexOf(currentQuestion.answer), 1); // Eliminar la respuesta correcta de las opciones
+        let shuffledOptions = uniqueAnswers.sort(() => Math.random() - 0.5); // Mezclar las opciones
+        shuffledOptions = shuffledOptions.slice(0, 4); // Tomar solo las primeras cuatro opciones
+        shuffledOptions.push(currentQuestion.answer); // Agregar la respuesta correcta al final de las opciones
+        shuffledOptions.sort(() => Math.random() - 0.5); // Mezclar nuevamente las opciones
+
+        // Verificar si la respuesta correcta está incluida en las opciones, si no, reemplazar una opción aleatoria con la respuesta correcta
+        if (!shuffledOptions.includes(currentQuestion.answer)) {
+          const randomIndex = Math.floor(
+            Math.random() * shuffledOptions.length
+          );
+          shuffledOptions[randomIndex] = currentQuestion.answer;
+        }
+
+        shuffledOptions.forEach((answer) => {
+          let option = document.createElement("div");
+          option.className = "option";
+          option.textContent = answer;
+          option.draggable = true;
+          option.setAttribute("ondragstart", "drag(event)");
+          optionsContainer.appendChild(option);
+        });
+      }
+
+      window.onload = startGame; // Comenzar el juego al cargar la página
+    </script>
+  </body>
+</html>

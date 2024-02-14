@@ -1,0 +1,60 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.word-display {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.hangman {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.guesses-left {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.letters-guessed {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.message {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.guess-input {
+  margin-right: 10px;
+  padding: 5px;
+  font-size: 1em;
+}
+
+.inicio {
+  position: fixed;
+  font-size: 20px;
+  color: red;
+  background-color: black;
+  /* Ajusta esta cantidad para cambiar la distancia desde abajo */
+  bottom: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la parte inferior */
+  left: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la izquierda */
+  cursor: pointer;
+}
+
+.guess-button,
+.reset-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.guess-button:hover,
+.reset-button:hover {
+  background-color: #ddd;
+}
