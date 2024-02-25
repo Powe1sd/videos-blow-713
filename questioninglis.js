@@ -162,3 +162,55 @@ window.onload = function () {
 function noscroll() {
   window.scrollTo(0, hiddenContentPosition);
 }
+
+//AUDIOS PLAY
+var audios = document.querySelectorAll("audio");
+var playButton = document.getElementById("playButton");
+var currentIndex = 0;
+var reproduciendo = false;
+var tiemposDeReproduccion = []; // Array para almacenar los tiempos de reproducción
+
+function reproducirAudios() {
+  reproduciendo = true;
+  audios[currentIndex].play();
+  audios[currentIndex].currentTime = tiemposDeReproduccion[currentIndex] || 0; // Restaurar el tiempo de reproducción
+  audios[currentIndex].addEventListener("ended", reproducirSiguiente);
+  playButton.innerHTML = '<i class="fas fa-pause"></i> Pausar Todos';
+  // Cambiar el color del texto
+  audios[currentIndex].parentNode.classList.add("playing");
+}
+
+function reproducirSiguiente() {
+  currentIndex++;
+  if (currentIndex < audios.length) {
+    audios[currentIndex - 1].removeEventListener("ended", reproducirSiguiente);
+    audios[currentIndex].play();
+    audios[currentIndex].currentTime = tiemposDeReproduccion[currentIndex] || 0; // Restaurar el tiempo de reproducción
+    audios[currentIndex].addEventListener("ended", reproducirSiguiente);
+    // Cambiar el color del texto
+    audios[currentIndex].parentNode.classList.add("playing");
+  } else {
+    detenerAudios();
+  }
+}
+
+function detenerAudios() {
+  reproduciendo = false;
+  audios.forEach((audio, index) => {
+    audio.pause();
+    tiemposDeReproduccion[index] = audio.currentTime; // Guardar el tiempo de reproducción
+    audio.currentTime = 0;
+    // Eliminar el color azul del texto
+    audio.parentNode.classList.remove("playing");
+  });
+  playButton.innerHTML = '<i class="fas fa-play"></i> Reproducir Todos';
+  currentIndex = 0;
+}
+
+playButton.addEventListener("click", function () {
+  if (!reproduciendo) {
+    reproducirAudios();
+  } else {
+    detenerAudios();
+  }
+});

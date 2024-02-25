@@ -333,3 +333,32 @@ p {
   color: white;
   text-decoration: none;
 }
+
+/* BOTON REPRODUCIR TODOS */
+.fixed-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999; /* Asegura que esté por encima de otros elementos */
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  cursor: pointer; /* Cursor al pasar por encima */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+.fixed-button:hover {
+  background-color: #0056b3; /* Color de fondo al pasar por encima */
+}
+
+.fixed-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.playing {
+  color: blue;
+}
