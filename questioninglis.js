@@ -163,7 +163,8 @@ function noscroll() {
   window.scrollTo(0, hiddenContentPosition);
 }
 
-//AUDIOS PLAY
+//AUDIOS PLAY ************************************************************************************************+
+
 var audios = document.querySelectorAll("audio");
 var playButton = document.getElementById("playButton");
 var currentIndex = 0;
@@ -178,6 +179,11 @@ function reproducirAudios() {
   playButton.innerHTML = '<i class="fas fa-pause"></i> Pausar Todos';
   // Cambiar el color del texto
   audios[currentIndex].parentNode.classList.add("playing");
+  // Desplazar el elemento al área visible
+  audios[currentIndex].parentNode.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
 }
 
 function reproducirSiguiente() {
@@ -189,6 +195,11 @@ function reproducirSiguiente() {
     audios[currentIndex].addEventListener("ended", reproducirSiguiente);
     // Cambiar el color del texto
     audios[currentIndex].parentNode.classList.add("playing");
+    // Desplazar el elemento al área visible
+    audios[currentIndex].parentNode.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
   } else {
     detenerAudios();
   }
