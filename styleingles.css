@@ -261,6 +261,24 @@ p {
   color: blue;
 }
 
+/* Boton retoceder de modulos */
+#retroceder {
+  position: fixed;
+  bottom: 10px;
+  left: 10px; /* Cambiamos "right" a "left" para posicionar en la esquina izquierda */
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#retroceder:hover {
+  background-color: #0056b3;
+}
+
 .category-section {
   text-align: center;
   position: fixed; /* Fijar la posición */
