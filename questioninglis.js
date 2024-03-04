@@ -163,8 +163,7 @@ function noscroll() {
   window.scrollTo(0, hiddenContentPosition);
 }
 
-//AUDIOS PLAY ************************************************************************************************+
-
+//AUDIOS PLAY ************************************************************************************************
 var audios = document.querySelectorAll("audio");
 var playButton = document.getElementById("playButton");
 var currentIndex = 0;
@@ -173,35 +172,27 @@ var tiemposDeReproduccion = []; // Array para almacenar los tiempos de reproducc
 
 function reproducirAudios() {
   reproduciendo = true;
-  audios[currentIndex].play();
-  audios[currentIndex].currentTime = tiemposDeReproduccion[currentIndex] || 0; // Restaurar el tiempo de reproducción
-  audios[currentIndex].addEventListener("ended", reproducirSiguiente);
   playButton.innerHTML = '<i class="fas fa-pause"></i> Pausar Todos';
-  // Cambiar el color del texto
-  audios[currentIndex].parentNode.classList.add("playing");
-  // Desplazar el elemento al área visible
-  audios[currentIndex].parentNode.scrollIntoView({
-    behavior: "smooth",
-    block: "center",
-  });
+  reproducirSiguiente();
 }
 
 function reproducirSiguiente() {
-  currentIndex++;
   if (currentIndex < audios.length) {
-    audios[currentIndex - 1].removeEventListener("ended", reproducirSiguiente);
-    audios[currentIndex].play();
-    audios[currentIndex].currentTime = tiemposDeReproduccion[currentIndex] || 0; // Restaurar el tiempo de reproducción
-    audios[currentIndex].addEventListener("ended", reproducirSiguiente);
-    // Cambiar el color del texto
-    audios[currentIndex].parentNode.classList.add("playing");
+    var audio = audios[currentIndex];
+    audio.currentTime = tiemposDeReproduccion[currentIndex] || 0; // Restaurar el tiempo de reproducción
+    audio.play();
+    audio.addEventListener("ended", reproducirSiguiente);
+    // Resaltar solo el texto correspondiente al audio actual
+    resaltarTexto(audio.parentNode);
     // Desplazar el elemento al área visible
-    audios[currentIndex].parentNode.scrollIntoView({
+    audio.parentNode.scrollIntoView({
       behavior: "smooth",
       block: "center",
     });
+    currentIndex++;
   } else {
-    detenerAudios();
+    currentIndex = 0;
+    reproducirSiguiente();
   }
 }
 
@@ -215,7 +206,15 @@ function detenerAudios() {
     audio.parentNode.classList.remove("playing");
   });
   playButton.innerHTML = '<i class="fas fa-play"></i> Reproducir Todos';
-  currentIndex = 0;
+}
+
+function resaltarTexto(elemento) {
+  // Eliminar la clase "playing" de todos los elementos de audio
+  audios.forEach((audio) => {
+    audio.parentNode.classList.remove("playing");
+  });
+  // Resaltar solo el elemento actual
+  elemento.classList.add("playing");
 }
 
 playButton.addEventListener("click", function () {

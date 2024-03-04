@@ -257,6 +257,10 @@ p {
   color: black;
 }
 
+.playing {
+  color: blue;
+}
+
 .category-section {
   text-align: center;
   position: fixed; /* Fijar la posición */
