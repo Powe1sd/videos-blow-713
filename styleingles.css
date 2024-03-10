@@ -3,6 +3,53 @@ body {
   padding: 0;
   background-color: rgba(0, 0, 0, 0.1);
 }
+.redirectButton {
+  position: fixed;
+  bottom: 60px; /* Distancia desde la parte inferior */
+  right: 10px; /* Distancia desde la parte derecha */
+  background-color: #007bff; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  padding: 10px 20px; /* Ajuste del relleno del botón */
+  border: none; /* Elimina el borde */
+  border-radius: 5px; /* Añade esquinas redondeadas */
+  text-decoration: none; /* Elimina la subrayado del texto */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  z-index: 1;
+}
+
+.redirectButton:hover {
+  background-color: #0056b3; /* Cambia el color de fondo al pasar por encima */
+}
+
+.goBackButton {
+  position: fixed;
+  bottom: 60px; /* Distancia desde la parte inferior */
+  left: 10px; /* Distancia desde la parte izquierda */
+  background-color: #dc3545; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  padding: 10px 20px; /* Ajuste del relleno del botón */
+  border: none; /* Elimina el borde */
+  border-radius: 5px; /* Añade esquinas redondeadas */
+  text-decoration: none; /* Elimina la subrayado del texto */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  z-index: 1;
+}
+
+.goBackButton:hover {
+  background-color: #c82333; /* Cambia el color de fondo al pasar por encima */
+}
+
+.inicio {
+  position: fixed;
+  font-size: 20px;
+  color: red;
+  background-color: black;
+  /* Ajusta esta cantidad para cambiar la distancia desde abajo */
+  bottom: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la parte inferior */
+  left: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la izquierda */
+  cursor: pointer;
+  z-index: 1;
+}
 
 @media (max-width: 768px) {
   .pronoun {
