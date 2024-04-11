@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discriminación racial en el ámbito laboral</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto76.html" class="redirectButton">Siguiente</a>
+    <a href="texto74.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Discriminación racial en el ámbito laboral</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Racial discrimination in the workplace remains a significant issue,
+          with individuals facing bias, unequal treatment, and limited
+          opportunities based on their race or ethnicity.
+        </p>
+
+        <p data-start="10">
+          Despite legal protections and diversity initiatives, racial minorities
+          often encounter barriers to advancement and experience disparities in
+          hiring, promotion, and pay.
+        </p>
+
+        <p data-start="21">
+          Addressing racial discrimination requires systemic change, enforcement
+          of anti-discrimination laws, and fostering inclusive environments
+          where diversity is valued and respected.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La discriminación racial en el ámbito laboral sigue siendo un problema
+          significativo, con individuos enfrentando prejuicios, trato desigual y
+          oportunidades limitadas basadas en su raza o etnia.
+        </p>
+
+        <p data-start="10">
+          A pesar de las protecciones legales e iniciativas de diversidad, las
+          minorías raciales a menudo encuentran barreras para avanzar y
+          experimentan disparidades en la contratación, promoción y
+          remuneración.
+        </p>
+
+        <p data-start="21">
+          Abordar la discriminación racial requiere un cambio sistémico,
+          aplicación de leyes antidiscriminatorias y fomentar entornos
+          inclusivos donde la diversidad sea valorada y respetada.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto75.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

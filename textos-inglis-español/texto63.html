@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El futuro de las ciudades inteligentes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto64.html" class="redirectButton">Siguiente</a>
+    <a href="texto62.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">El futuro de las ciudades inteligentes</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          The future of smart cities promises enhanced efficiency,
+          sustainability, and quality of life through the integration of
+          advanced technologies such as IoT, AI, and data analytics.
+        </p>
+
+        <p data-start="12">
+          These cities utilize interconnected systems to optimize energy usage,
+          transportation, waste management, and public services, fostering
+          innovation and economic growth.
+        </p>
+
+        <p data-start="23">
+          By leveraging data-driven insights and citizen engagement, smart
+          cities can address urban challenges, improve resource allocation, and
+          create more resilient and inclusive communities.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          El futuro de las ciudades inteligentes promete una mayor eficiencia,
+          sostenibilidad y calidad de vida mediante la integración de
+          tecnologías avanzadas como IoT, IA y análisis de datos.
+        </p>
+
+        <p data-start="12">
+          Estas ciudades utilizan sistemas interconectados para optimizar el uso
+          de energía, transporte, gestión de residuos y servicios públicos,
+          fomentando la innovación y el crecimiento económico.
+        </p>
+
+        <p data-start="23">
+          Al aprovechar información impulsada por datos y la participación
+          ciudadana, las ciudades inteligentes pueden abordar desafíos urbanos,
+          mejorar la asignación de recursos y crear comunidades más resilientes
+          e inclusivas.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto63.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desigualdad en el acceso a servicios financieros</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto85.html" class="redirectButton">Siguiente</a>
+    <a href="texto83.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Desigualdad en el acceso a servicios financieros</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Inequality in access to financial services remains a pressing issue,
+          with many individuals and communities lacking access to basic banking,
+          credit, and investment opportunities.
+        </p>
+
+        <p data-start="10">
+          Marginalized groups, including low-income individuals, minorities, and
+          those in rural areas, often face barriers such as distance,
+          affordability, and eligibility requirements when trying to access
+          financial services.
+        </p>
+
+        <p data-start="20">
+          Addressing this disparity requires innovative approaches to expand
+          financial inclusion, such as mobile banking, microfinance initiatives,
+          and targeted support for underserved communities.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La desigualdad en el acceso a servicios financieros sigue siendo un
+          problema apremiante, con muchas personas y comunidades sin acceso a
+          servicios bancarios básicos, crédito y oportunidades de inversión.
+        </p>
+
+        <p data-start="10">
+          Los grupos marginados, incluidas personas de bajos ingresos, minorías
+          y aquellos en áreas rurales, a menudo enfrentan barreras como la
+          distancia, la asequibilidad y los requisitos de elegibilidad al
+          intentar acceder a servicios financieros.
+        </p>
+
+        <p data-start="20">
+          Abordar esta disparidad requiere enfoques innovadores para expandir la
+          inclusión financiera, como la banca móvil, iniciativas de
+          microfinanzas y apoyo dirigido a comunidades desatendidas.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto84.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

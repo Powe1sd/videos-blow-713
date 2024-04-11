@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="logo/logo-color.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="questioninglis.js"></script>
+    <script src="codigoacces.js"></script>
+    <script src="solicitarcodigo.js"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <title>Aprendiendo Inglés</title>
+  </head>
+  <body>
+    <a href="https://tempssll.github.io/videos-blow-713/">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <a href="pagina2.html" class="redirectButton">Siguiente</a>
+    <a href="" class="goBackButton">Retroceder</a>
+
+    <br /><br />
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Modulos ingles</title>
+      </head>
+      <body>
+        <style>
+          body {
+            margin: auto;
+            background-color: azure;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+          .module {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* Hace que los módulos sean redondos */
+            margin: 10px 20px; /* Separación horizontal y vertical */
+            float: left;
+            text-align: center; /* Centra el texto dentro del módulo */
+            text-decoration: none; /* Elimina el subrayado del enlace */
+            color: black; /* Color del texto */
+            position: relative; /* Permite posicionar el texto de manera absoluta */
+            border: 1px solid gold; /* Borde dorado */
+          }
+          .module img {
+            width: 100%;
+            height: 100%; /* Asegura que la imagen ocupe todo el espacio dentro del módulo */
+            display: block;
+            border-radius: 50%; /* Hace que la imagen sea redonda */
+          }
+          .module p {
+            position: absolute; /* Posiciona el texto absolutamente dentro del módulo */
+            bottom: -68px; /* Ajusta la posición del texto verticalmente */
+            width: 100%; /* Asegura que el texto ocupe todo el ancho del módulo */
+            margin-top: 100px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 20px;
+          }
+
+          .last-modules {
+            margin-top: 90px;
+          }
+
+          @media only screen and (max-width: 600px) {
+            .module {
+              width: 100%; /* Para mostrar un módulo por fila en dispositivos móviles */
+            }
+
+            .last-modules {
+              width: 100%; /* También se muestra en una columna en dispositivos móviles */
+            }
+          }
+
+          .practica {
+            text-align: center;
+            background-color: black;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 40px;
+            color: blue;
+            width: 100%;
+            margin-bottom: 20px;
+          }
+
+          @media (max-width: 768px) {
+            .module {
+              width: calc(40% - 30px);
+              margin-top: 60px;
+            }
+          }
+
+          /* Estilos para el botón fijo */
+          .fixed-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999; /* Asegura que esté por encima de otros elementos */
+            background-color: #007bff; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            padding: 10px 20px; /* Espaciado interno */
+            cursor: pointer; /* Cursor al pasar por encima */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+          }
+
+          .fixed-button:hover {
+            background-color: #0056b3; /* Color de fondo al pasar por encima */
+          }
+
+          .fixed-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+          }
+
+          .playing {
+            color: blue;
+          }
+
+          .pronoun {
+            margin-bottom: 5px; /* Espacio entre elementos reducido */
+            font-size: 14px; /* Tamaño de fuente reducido */
+          }
+          .divider {
+            margin-bottom: 3px; /* Espacio entre el texto y el divisor reducido */
+          }
+
+          /* TAMAÑO DE LA LETRA Y LA CORRE MAS ALA DERECHA  */
+          @media screen and (max-width: 768px) {
+            .pronoun {
+              font-size: 14px; /* Reducción adicional del tamaño de fuente */
+              padding-left: 28px;
+            }
+          }
+        </style>
+
+        <button id="playButton" class="fixed-button play">
+          <i class="fas fa-play"></i> Reproducir Todos
+        </button>
+
+        <div class="corner-text">TECH</div>
+
+        <!-- Seccion de categorias -->
+
+        <h3>
+          Nota: Si estás utilizando un teléfono móvil, gira la pantalla
+          horizontalmente.
+        </h3>
+
+        <h1 class="practica">ALFABETO</h1>
+
+        <!-- Frases de texto **************************************************** -->
+
+        <ul>
+          <li class="pronoun">
+            <span style="color: red">A</span>__ (EI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/a.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">B</span> ------ (BI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/b.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">C</span> ------ (CI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/c.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">D</span> --- (DI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/d.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">E</span> ------ (I)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/e.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">F</span> ---- (EF)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/f.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">G</span> ---- (YI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/g.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">H</span> --- (EICHI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/h.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">I</span> ------ (AI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/i.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">J</span> --- (YEI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/j.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">K</span> --- (KEI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/k.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">L</span> --- (EL)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/l.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">M</span> -- (EME)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/m.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">N</span> --- (EN)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/n.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">O</span> ---- (OU)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/o.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">P</span> ------ (PI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/p.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Q</span> -- (KYU)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/q.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">R</span> -- (AR)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/r.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">S</span> ---- (ES)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/s.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">T</span>------ (TI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/t.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">U</span> ------(IU)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/u.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">V</span> ------(VI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/v.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">W</span> ------(DOBLE IU)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/w.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">X</span> -----(EX)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/x.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Y</span> ------(UAI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/y.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Z</span> ------(ZI)
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="vocales/z.mp3" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+        </ul>
+
+        <!-- SISTEMA DE REPRODUCCIO DE AUDIOS *****************************************++ -->
+        <script>
+          var audios = document.querySelectorAll("audio");
+          var playButton = document.getElementById("playButton");
+          var currentIndex = 0;
+          var reproduciendo = false;
+          var tiemposDeReproduccion = []; // Array para almacenar los tiempos de reproducción
+
+          function reproducirAudios() {
+            reproduciendo = true;
+            playButton.innerHTML = '<i class="fas fa-pause"></i> Pausar Todos';
+            reproducirSiguiente();
+          }
+
+          function reproducirSiguiente() {
+            if (currentIndex < audios.length) {
+              var audio = audios[currentIndex];
+              audio.currentTime = tiemposDeReproduccion[currentIndex] || 0; // Restaurar el tiempo de reproducción
+              audio.play();
+              audio.addEventListener("ended", reproducirSiguiente);
+              // Resaltar solo el texto correspondiente al audio actual
+              resaltarTexto(audio.parentNode);
+              // Desplazar el elemento al área visible
+              audio.parentNode.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+              currentIndex++;
+            } else {
+              currentIndex = 0;
+              reproducirSiguiente();
+            }
+          }
+
+          function detenerAudios() {
+            reproduciendo = false;
+            audios.forEach((audio, index) => {
+              audio.pause();
+              tiemposDeReproduccion[index] = audio.currentTime; // Guardar el tiempo de reproducción
+              audio.currentTime = 0;
+              // Eliminar el color azul del texto
+              audio.parentNode.classList.remove("playing");
+            });
+            playButton.innerHTML =
+              '<i class="fas fa-play"></i> Reproducir Todos';
+          }
+
+          function resaltarTexto(elemento) {
+            // Eliminar la clase "playing" de todos los elementos de audio
+            audios.forEach((audio) => {
+              audio.parentNode.classList.remove("playing");
+            });
+            // Resaltar solo el elemento actual
+            elemento.classList.add("playing");
+          }
+
+          playButton.addEventListener("click", function () {
+            if (!reproduciendo) {
+              reproducirAudios();
+            } else {
+              detenerAudios();
+            }
+          });
+        </script>
+      </body>
+    </html>
+  </body>
+</html>

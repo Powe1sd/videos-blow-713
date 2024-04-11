@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arqueología subacuática</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto72.html" class="redirectButton">Siguiente</a>
+    <a href="texto70.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Arqueología subacuática</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Underwater archaeology explores submerged cultural heritage sites
+          ranging from shipwrecks to ancient submerged cities.
+        </p>
+
+        <p data-start="7">
+          These underwater excavations uncover valuable artifacts and provide
+          insights into past civilizations and maritime history.
+        </p>
+
+        <p data-start="15">
+          Advanced technologies like remote sensing and underwater robotics play
+          a crucial role in surveying and documenting underwater archaeological
+          sites.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La arqueología subacuática explora sitios de patrimonio cultural
+          sumergidos que van desde naufragios hasta antiguas ciudades
+          sumergidas.
+        </p>
+
+        <p data-start="7">
+          Estas excavaciones submarinas descubren artefactos valiosos y ofrecen
+          información sobre civilizaciones pasadas y la historia marítima.
+        </p>
+
+        <p data-start="15">
+          Tecnologías avanzadas como la detección remota y la robótica
+          subacuática desempeñan un papel crucial en el relevamiento y la
+          documentación de sitios arqueológicos submarinos.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto71.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

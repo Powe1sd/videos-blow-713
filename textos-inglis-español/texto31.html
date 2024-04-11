@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El destello de una supernova en el firmamento</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto32.html" class="redirectButton">Siguiente</a>
+    <a href="texto30.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">El destello de una supernova en el firmamento</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          The flare of a supernova in the sky captivates astronomers,
+          illuminating the heavens with its extraordinary brilliance.
+        </p>
+
+        <p data-start="8">
+          In the aftermath of this cosmic explosion, new elements are forged,
+          scattering across the universe and enriching celestial bodies.
+        </p>
+
+        <p data-start="18">
+          Across galaxies, the remnants of supernovae serve as reminders of the
+          dramatic forces at play in the cosmos.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          El destello de una supernova en el firmamento cautiva a los
+          astrónomos, iluminando los cielos con su extraordinario brillo.
+        </p>
+
+        <p data-start="8">
+          Después de esta explosión cósmica, se forjan nuevos elementos,
+          dispersándose por el universo y enriqueciendo los cuerpos celestes.
+        </p>
+
+        <p data-start="18">
+          A lo largo de las galaxias, los remanentes de las supernovas sirven
+          como recordatorios de las fuerzas dramáticas en juego en el cosmos.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto31.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

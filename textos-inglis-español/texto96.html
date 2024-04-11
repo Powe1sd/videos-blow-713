@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Desigualdad en el acceso a servicios de cuidado infantil y de personas
+      mayores
+    </title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto97.html" class="redirectButton">Siguiente</a>
+    <a href="texto95.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">
+      Desigualdad en el acceso a servicios de cuidado infantil y de personas
+      mayores
+    </h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Inequality in access to childcare and elderly care services
+          exacerbates social disparities, affecting vulnerable populations
+          disproportionately.
+        </p>
+
+        <p data-start="9">
+          Limited access to affordable and quality childcare services impedes
+          parents' ability to work and children's development, perpetuating
+          cycles of poverty.
+        </p>
+
+        <p data-start="19">
+          Similarly, inadequate access to eldercare services strains families,
+          particularly women, who often bear the burden of caregiving
+          responsibilities, impacting their employment and well-being.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La desigualdad en el acceso a servicios de cuidado infantil y de
+          personas mayores exacerba las disparidades sociales, afectando
+          desproporcionadamente a las poblaciones vulnerables.
+        </p>
+
+        <p data-start="9">
+          El acceso limitado a servicios de cuidado infantil asequibles y de
+          calidad obstaculiza la capacidad de los padres para trabajar y el
+          desarrollo de los niños, perpetuando ciclos de pobreza.
+        </p>
+
+        <p data-start="19">
+          De manera similar, el acceso inadecuado a servicios de cuidado de
+          personas mayores tensiona a las familias, especialmente a las mujeres,
+          que suelen cargar con la responsabilidad del cuidado, impactando su
+          empleo y bienestar.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto96.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

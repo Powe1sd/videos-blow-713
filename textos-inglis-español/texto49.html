@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Desarrollo de baterías de almacenamiento de energía de próxima generación
+    </title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto50.html" class="redirectButton">Siguiente</a>
+    <a href="texto48.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">
+      Desarrollo de baterías de almacenamiento de energía de próxima generación
+    </h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          The development of next-generation energy storage batteries is
+          revolutionizing the way we store and utilize electricity, offering
+          higher energy density, faster charging times, and longer lifespan.
+        </p>
+
+        <p data-start="12">
+          These advanced batteries utilize innovative materials and designs to
+          enhance performance, enabling the widespread adoption of renewable
+          energy sources and electric vehicles.
+        </p>
+
+        <p data-start="22">
+          With ongoing research and development, future battery technologies
+          hold the potential to transform the energy landscape and accelerate
+          the transition to a sustainable and low-carbon future.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          El desarrollo de baterías de almacenamiento de energía de próxima
+          generación está revolucionando la forma en que almacenamos y
+          utilizamos la electricidad, ofreciendo una mayor densidad de energía,
+          tiempos de carga más rápidos y una vida útil más larga.
+        </p>
+
+        <p data-start="12">
+          Estas baterías avanzadas utilizan materiales y diseños innovadores
+          para mejorar el rendimiento, lo que permite la adopción generalizada
+          de fuentes de energía renovable y vehículos eléctricos.
+        </p>
+
+        <p data-start="22">
+          Con la investigación y el desarrollo continuos, las futuras
+          tecnologías de baterías tienen el potencial de transformar el panorama
+          energético y acelerar la transición hacia un futuro sostenible y bajo
+          en carbono.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto49.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desigualdad en el acceso a la tecnología y la información</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto80.html" class="redirectButton">Siguiente</a>
+    <a href="texto78.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">
+      Desigualdad en el acceso a la tecnología y la información
+    </h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Inequality in access to technology and information exacerbates
+          disparities in education, job opportunities, and social advancement,
+          with marginalized communities often lacking infrastructure and
+          resources for digital connectivity.
+        </p>
+
+        <p data-start="14">
+          Limited access to computers, internet connectivity, and digital
+          literacy programs further widens the digital divide, hindering
+          individuals from accessing vital information and participating fully
+          in the digital age.
+        </p>
+
+        <p data-start="27">
+          Bridging this gap requires concerted efforts to provide affordable
+          technology, internet access, and digital education initiatives to
+          underserved populations, ensuring equal opportunities for all to
+          thrive in the digital era.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La desigualdad en el acceso a la tecnología y la información agrava
+          las disparidades en educación, oportunidades laborales y avance
+          social, con comunidades marginadas a menudo careciendo de
+          infraestructura y recursos para la conectividad digital.
+        </p>
+
+        <p data-start="14">
+          El acceso limitado a computadoras, conectividad a internet y programas
+          de alfabetización digital amplía aún más la brecha digital,
+          dificultando que las personas accedan a información vital y participen
+          plenamente en la era digital.
+        </p>
+
+        <p data-start="27">
+          Para cerrar esta brecha se requieren esfuerzos concertados para
+          proporcionar tecnología asequible, acceso a internet e iniciativas de
+          educación digital a las poblaciones desatendidas, asegurando
+          oportunidades iguales para que todos prosperen en la era digital.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto79.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

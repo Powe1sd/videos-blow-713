@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exclusión social de personas mayores</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto86.html" class="redirectButton">Siguiente</a>
+    <a href="texto84.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Exclusión social de personas mayores</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Social exclusion of elderly people is a pressing issue in many
+          societies, with seniors facing isolation, marginalization, and limited
+          access to essential services and opportunities.
+        </p>
+
+        <p data-start="11">
+          Factors such as ageism, limited mobility, and lack of technological
+          literacy contribute to the exclusion of older adults from social
+          participation, economic activities, and decision-making processes.
+        </p>
+
+        <p data-start="24">
+          Addressing the social exclusion of seniors requires comprehensive
+          strategies that promote inclusivity, provide support networks, and
+          ensure equal access to resources and opportunities for people of all
+          ages.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La exclusión social de las personas mayores es un problema apremiante
+          en muchas sociedades, con los ancianos enfrentando aislamiento,
+          marginación y acceso limitado a servicios esenciales y oportunidades.
+        </p>
+
+        <p data-start="11">
+          Factores como el edadismo, la movilidad limitada y la falta de
+          alfabetización tecnológica contribuyen a la exclusión de los adultos
+          mayores de la participación social, las actividades económicas y los
+          procesos de toma de decisiones.
+        </p>
+
+        <p data-start="24">
+          Abordar la exclusión social de los ancianos requiere estrategias
+          integrales que promuevan la inclusividad, brinden redes de apoyo y
+          aseguren el acceso equitativo a recursos y oportunidades para personas
+          de todas las edades.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto85.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

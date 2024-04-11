@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <style>
+    body {
+      background-color: azure;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .module {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%; /* Hace que los módulos sean redondos */
+      margin: 10px 20px; /* Separación horizontal y vertical */
+      float: left;
+      text-align: center; /* Centra el texto dentro del módulo */
+      text-decoration: none; /* Elimina el subrayado del enlace */
+      color: black; /* Color del texto */
+      position: relative; /* Permite posicionar el texto de manera absoluta */
+      border: 1px solid gold; /* Borde dorado */
+    }
+    .module img {
+      width: 100%;
+      height: 100%; /* Asegura que la imagen ocupe todo el espacio dentro del módulo */
+      display: block;
+      border-radius: 50%; /* Hace que la imagen sea redonda */
+    }
+    .module p {
+      position: absolute; /* Posiciona el texto absolutamente dentro del módulo */
+      bottom: -68px; /* Ajusta la posición del texto verticalmente */
+      width: 100%; /* Asegura que el texto ocupe todo el ancho del módulo */
+      margin-top: 100px;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 20px;
+    }
+
+    .last-modules {
+      margin-top: 90px;
+    }
+
+    .practica {
+      text-align: center;
+      background-color: whitesmoke;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 40px;
+      margin-top: 120px;
+      color: blue;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    /* Estilos para el botón fijo */
+    .fixed-button {
+  position: fixed;
+  top: 50%;
+  right: 10%; /* Ajusta este valor según sea necesario */
+  transform: translate(0, -50%); /* Centra verticalmente el botón */
+  z-index: 9999; /* Asegura que esté por encima de otros elementos */
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  cursor: pointer; /* Cursor al pasar por encima */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+.fixed-button:hover {
+  background-color: #0056b3; /* Color de fondo al pasar por encima */
+}
+
+
+    .playing {
+      color: blue;
+    }
+
+    .text[lang="es"] {
+      color: red; /* Cambiar el color del texto en español a rojo */
+    }
+
+    @media (max-width: 768px) {
+      /* Estilos para dispositivos con un ancho máximo de 768px, como tablets y móviles */
+      .module {
+        width: calc(
+          33.33% - 20px
+        ); /* Calculamos el ancho de cada módulo para que haya tres en una fila */
+        margin: 34px 10px; /* Agregamos margen para separar los módulos y también un margen superior para bajarlos */
+        float: none; /* Eliminamos el float para que los módulos se apilen verticalmente */
+        text-align: center; /* Centramos el texto debajo de las imágenes */
+      }
+      .last-modules {
+        clear: both; /* Limpiamos el float para que los últimos módulos no se superpongan */
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      /* Estilos para dispositivos con un ancho máximo de 768px, como dispositivos móviles */
+      .section {
+        width: 70%; /* Ancho de la sección al 90% */
+        margin: 0 auto; /* Centra la sección horizontalmente */
+      }
+
+      .text {
+        font-size: 14px;
+      }
+
+      .pronoun {
+  font-size: 12px; /* Puedes ajustar este valor según tus necesidades */
+}
+
+    }
+
+/* BOTON DE DESPLIEGUE*************************************************** */
+  #toggleButton {
+  position: absolute;
+  top: 225px; /* Ajusta la distancia desde arriba según lo desees */
+  left: 10px; /* Ajusta la distancia desde la izquierda según lo desees */
+  z-index: 9999; /* Para asegurar que esté por encima del contenido */
+      width: 20%;
+      height: 7%;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      border: 1px solid red;
+
+}
+
+#seccionAMostrar {
+  display: none; /* Para ocultar la sección por defecto */
+}
+
+/* ************************************************************************************ */
+
+/* Estilos para dispositivos móviles */
+
+#seccionAMostrar {
+  display: flex; /* Utiliza flexbox */
+  flex-wrap: wrap; /* Permite que las secciones se envuelvan en dispositivos móviles */
+}
+
+
+/* Estilos específicos para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+  #seccionAMostrar {
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  .module {
+      flex: 1 0 calc(40% - 20px); /* Establece que las secciones ocupen el 50% del ancho disponible con un margen de 10px */
+      margin-top : 25px; /* Añade un margen entre las secciones */
+
+  }
+}
+
+  </style>
+
+    <!-- ***********************************************************+ -->
+
+    
+    <a href="modulos-ingles-redondo/pagina1.html" class="module">
+        <img src="../Modulos-imagenes/alfabeto.png" alt="Imagen 1" />
+        <p>ALFABETO</p>
+      </a>
+      <a href="modulos-ingles-redondo/pagina2.html" class="module">
+        <img src="../Modulos-imagenes/cumplidos.jpeg" alt="Imagen 2" />
+        <p>CUMPLIDOS</p>
+      </a>
+      <a href="modulos-ingles-redondo/pagina4.html" class="module">
+        <img src="../Modulos-imagenes/colores.jpeg" alt="Imagen 3" />
+        <p>COLORES</p>
+      </a>
+      <a href="modulos-ingles-redondo/pagina5.html" class="module">
+        <img src="../Modulos-imagenes/Numeros.jpeg" alt="Imagen 4" />
+        <p>NÚMEROS</p>
+      </a>
+      <a href="modulos-ingles-redondo/pagina6.html" class="module">
+        <img src="../Modulos-imagenes/organos.jpeg" alt="Imagen 5" />
+        <p>ORGANOS</p>
+      </a>
+      <a href="modulos-ingles-redondo/pagina7.html" class="module last-modules">
+        <img src="../Modulos-imagenes/pronombres.png" alt="Imagen 6" />
+        <p>PRONOMBRES</p>
+      </a>
+      <a href="modulos-ingles-redondo/pagina8.html" class="module last-modules">
+        <img src="../Modulos-imagenes/familia.jpeg" alt="Imagen 7" />
+        <p>FAMILIA</p>
+      </a>
+      <a href="modulos-ingles-redondo/pagina9.html" class="module last-modules">
+        <img src="../Modulos-imagenes/semana.jpeg" alt="Imagen 8" />
+        <p>SEMANA</p>
+      </a>
+      <a href="modulos-ingles-redondo/pagina10.html" class="module last-modules">
+        <img src="../Modulos-imagenes/meses.png" alt="Imagen 8" />
+        <p>MESES</p>
+      </a>
+    
+      <a href="modulos-ingles-redondo/11.html" class="module last-modules">
+        <img src="../Modulos-imagenes/tiempo.jpeg" alt="Imagen 8" />
+        <p>TIEMPO</p>
+      </a>
+  
+      <!-- otro cambio de link de src tuta e imagenes -->
+      <a href="modulos-ingles-redondo/ropa.html" class="module last-modules">
+        <img src="../Modulos-imagenes/ropa.jpeg" alt="Imagen 8" />
+        <p>ROPA</p>
+      </a>
+      <a href="modulos-ingles-redondo/casa.html" class="module last-modules">
+        <img src="../Modulos-imagenes/casa.jpeg" alt="Imagen 8" />
+        <p>CASA</p>
+      </a>
+  
+      <a href="modulos-ingles-redondo/sala.html" class="module last-modules">
+        <img src="../Modulos-imagenes/sala.jpeg" alt="Imagen 8" />
+        <p>SALA</p>
+      </a>
+      <a href="modulos-ingles-redondo/animales.html" class="module last-modules">
+        <img src="../Modulos-imagenes/animales.jpeg" alt="Imagen 8" />
+        <p>ANIMALES</p>
+      </a>
+      <a href="modulos-ingles-redondo/baño.html" class="module last-modules">
+        <img src="../Modulos-imagenes/baño.jpeg" alt="Imagen 8" />
+        <p>BAÑO</p>
+      </a>
+      <a href="modulos-ingles-redondo/cocina.html" class="module last-modules">
+        <img src="../Modulos-imagenes/cocina.jpeg" alt="Imagen 8" />
+        <p>COCINA</p>
+      </a>
+      <a href="modulos-ingles-redondo/alimento.html" class="module last-modules">
+        <img src="../Modulos-imagenes/alimentos.jpeg" alt="Imagen 8" />
+        <p>ALIMENTO</p>
+      </a>
+      <a href="modulos-ingles-redondo/bebidas.html" class="module last-modules">
+        <img src="../Modulos-imagenes/bebidas.jpeg" alt="Imagen 8" />
+        <p>BEBIDAS</p>
+      </a>
+      <a href="modulos-ingles-redondo/profesiones.html" class="module last-modules">
+        <img src="../Modulos-imagenes/profesiones.jpeg" alt="Imagen 8" />
+        <p>PROFESIONES</p>
+      </a>
+      <a href="modulos-ingles-redondo/lugares.html" class="module last-modules">
+        <img src="../Modulos-imagenes/lugares.jpeg" alt="Imagen 8" />
+        <p>LUGARES</p>
+      </a>
+      <a href="modulos-ingles-redondo/deportes.html" class="module last-modules">
+        <img src="../Modulos-imagenes/deportes.jpeg" alt="Imagen 8" />
+        <p>DEPORTES</p>
+      </a>
+      <a href="modulos-ingles-redondo/frutas.html" class="module last-modules">
+        <img src="../Modulos-imagenes/frutas.jpeg" alt="Imagen 8" />
+        <p>FRUTAS</p>
+      </a>
+      <a href="modulos-ingles-redondo/plantas.html" class="module last-modules">
+        <img src="../Modulos-imagenes/plantas.jpeg" alt="Imagen 8" />
+        <p>PLANTAS</p>
+      </a>
+      <a href="modulos-ingles-redondo/aves.html" class="module last-modules">
+        <img src="../Modulos-imagenes/aves.jpeg" alt="Imagen 8" />
+        <p>AVES</p>
+      </a>
+      <a href="modulos-ingles-redondo/señales.html" class="module last-modules">
+        <img src="../Modulos-imagenes/señales.jpeg" alt="Imagen 8" />
+        <p>SEÑALES</p>
+      </a>
+      <a href="modulos-ingles-redondo/negocio.html" class="module last-modules">
+        <img src="../Modulos-imagenes/negocio.jpeg" alt="Imagen 8" />
+        <p>NEGOCIO</p>
+      </a>
+      <a href="modulos-ingles-redondo/ejercicios.html" class="module last-modules">
+        <img src="../Modulos-imagenes/ejercicios.jpeg" alt="Imagen 8" />
+        <p>EJERCICIOS</p>
+      </a>
+      <a href="modulos-ingles-redondo/instrumento.html" class="module last-modules">
+        <img src="../Modulos-imagenes/instrumentos.jpeg" alt="Imagen 8" />
+        <p>INSTRUMENTOS</p>
+      </a>
+  
+      <a href="modulos-ingles-redondo/partescomputer.html" class="module last-modules">
+        <img src="../Modulos-imagenes/COMPUTER.jpg" alt="Imagen 8" />
+        <p>COMPUTADOR</p>
+      </a>
+  
+  
+      <a href="modulos-ingles-redondo/estaciones.html" class="module last-modules">
+        <img src="../Modulos-imagenes/estaciones.jpeg" alt="Imagen 8" />
+        <p>ESTACIONES</p>
+      </a>
+  
+    </div>
+  
+  
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

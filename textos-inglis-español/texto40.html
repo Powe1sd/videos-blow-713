@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vehículos eléctricos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto41.html" class="redirectButton">Siguiente</a>
+    <a href="texto39.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Vehículos eléctricos</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Electric vehicles (EVs) are automobiles powered by electric motors,
+          which are fueled by rechargeable batteries instead of internal
+          combustion engines fueled by gasoline or diesel.
+        </p>
+
+        <p data-start="11">
+          EVs offer numerous environmental benefits, including reduced carbon
+          emissions, improved air quality, and decreased dependence on fossil
+          fuels.
+        </p>
+
+        <p data-start="20">
+          As technology advances and infrastructure improves, electric vehicles
+          are becoming increasingly popular and accessible to consumers around
+          the world.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          Los vehículos eléctricos (VE) son automóviles impulsados por motores
+          eléctricos, que son alimentados por baterías recargables en lugar de
+          motores de combustión interna alimentados por gasolina o diésel.
+        </p>
+
+        <p data-start="11">
+          Los VE ofrecen numerosos beneficios ambientales, incluida la reducción
+          de emisiones de carbono, la mejora de la calidad del aire y la
+          disminución de la dependencia de los combustibles fósiles.
+        </p>
+
+        <p data-start="20">
+          A medida que avanza la tecnología y mejora la infraestructura, los
+          vehículos eléctricos se están volviendo cada vez más populares y
+          accesibles para los consumidores de todo el mundo.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto40.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

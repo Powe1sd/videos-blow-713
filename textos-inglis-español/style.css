@@ -1,0 +1,138 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+/* BOTON */
+.redirectButton {
+  position: fixed;
+  bottom: 60px; /* Distancia desde la parte inferior */
+  right: 10px; /* Distancia desde la parte derecha */
+  background-color: #007bff; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  padding: 10px 20px; /* Ajuste del relleno del botón */
+  border: none; /* Elimina el borde */
+  border-radius: 5px; /* Añade esquinas redondeadas */
+  text-decoration: none; /* Elimina la subrayado del texto */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  z-index: 1;
+}
+
+.redirectButton:hover {
+  background-color: #0056b3; /* Cambia el color de fondo al pasar por encima */
+}
+
+.goBackButton {
+  position: fixed;
+  bottom: 60px; /* Distancia desde la parte inferior */
+  left: 10px; /* Distancia desde la parte izquierda */
+  background-color: #dc3545; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  padding: 10px 20px; /* Ajuste del relleno del botón */
+  border: none; /* Elimina el borde */
+  border-radius: 5px; /* Añade esquinas redondeadas */
+  text-decoration: none; /* Elimina la subrayado del texto */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  z-index: 1;
+}
+
+.goBackButton:hover {
+  background-color: #c82333; /* Cambia el color de fondo al pasar por encima */
+}
+
+#textContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.paragraph-container {
+  flex: 1 1 45%;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid gold;
+}
+
+.paragraph-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.paragraph-container p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.highlight-english {
+  color: blue;
+  font-weight: bold;
+}
+
+.highlight-spanish {
+  color: red;
+  font-weight: bold;
+}
+
+.inicio {
+  position: fixed;
+  font-size: 20px;
+  color: red;
+  background-color: black;
+  /* Ajusta esta cantidad para cambiar la distancia desde abajo */
+  bottom: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la parte inferior */
+  left: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la izquierda */
+  cursor: pointer;
+}
+
+.inglish {
+  font-family: "Times New Roman", Times, serif;
+  color: blue;
+}
+
+.español {
+  font-family: "Times New Roman", Times, serif;
+  color: red;
+}
+
+.tecnologia {
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  color: white;
+  background-color: black;
+}
+
+#audioContainer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#audio {
+  background-color: blue;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#audio:hover {
+  background-color: #003366; /* Azul oscuro */
+}
+
+@media (max-width: 768px) {
+  #audio {
+    position: fixed; /* Cambiar a posición fija en dispositivos móviles */
+    top: 8px; /* Ajustar la distancia desde la parte superior */
+    right: 100px; /* Ajustar la distancia desde la derecha */
+    width: 30%;
+    margin-top: 70px;
+  }
+}

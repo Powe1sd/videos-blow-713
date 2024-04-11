@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eficiencia energética en la industria</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto40.html" class="redirectButton">Siguiente</a>
+    <a href="texto38.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Eficiencia energética en la industria</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Energy efficiency in industry refers to the optimization of energy
+          usage and processes within manufacturing facilities and production
+          plants to reduce waste and minimize environmental impact.
+        </p>
+
+        <p data-start="11">
+          Implementing energy-efficient technologies and practices can lead to
+          significant cost savings, improved productivity, and reduced carbon
+          emissions.
+        </p>
+
+        <p data-start="21">
+          Key strategies include upgrading equipment, improving insulation,
+          implementing energy management systems, and adopting renewable energy
+          sources.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La eficiencia energética en la industria se refiere a la optimización
+          del uso de energía y los procesos dentro de las instalaciones de
+          fabricación y plantas de producción para reducir el desperdicio y
+          minimizar el impacto ambiental.
+        </p>
+
+        <p data-start="11">
+          La implementación de tecnologías y prácticas energéticamente
+          eficientes puede conducir a ahorros significativos, mejora de la
+          productividad y reducción de las emisiones de carbono.
+        </p>
+
+        <p data-start="21">
+          Las estrategias clave incluyen la actualización de equipos, la mejora
+          del aislamiento, la implementación de sistemas de gestión energética y
+          la adopción de fuentes de energía renovable.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto39.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

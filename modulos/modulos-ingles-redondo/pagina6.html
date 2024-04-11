@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="logo/logo-color.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="questioninglis.js"></script>
+    <script src="codigoacces.js"></script>
+    <script src="solicitarcodigo.js"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <title>ORGANOS</title>
+  </head>
+  <body>
+    <a href="https://tempssll.github.io/videos-blow-713/">
+      <button class="inicio">INICIO</button>
+    </a>
+    <br /><br />
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Modulos ingles</title>
+      </head>
+      <body>
+        <style>
+          body {
+            margin: auto;
+            background-color: azure;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+          .module {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* Hace que los módulos sean redondos */
+            margin: 10px 20px; /* Separación horizontal y vertical */
+            float: left;
+            text-align: center; /* Centra el texto dentro del módulo */
+            text-decoration: none; /* Elimina el subrayado del enlace */
+            color: black; /* Color del texto */
+            position: relative; /* Permite posicionar el texto de manera absoluta */
+            border: 1px solid gold; /* Borde dorado */
+          }
+          .module img {
+            width: 100%;
+            height: 100%; /* Asegura que la imagen ocupe todo el espacio dentro del módulo */
+            display: block;
+            border-radius: 50%; /* Hace que la imagen sea redonda */
+          }
+          .module p {
+            position: absolute; /* Posiciona el texto absolutamente dentro del módulo */
+            bottom: -68px; /* Ajusta la posición del texto verticalmente */
+            width: 100%; /* Asegura que el texto ocupe todo el ancho del módulo */
+            margin-top: 100px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 20px;
+          }
+
+          .last-modules {
+            margin-top: 90px;
+          }
+
+          @media only screen and (max-width: 600px) {
+            .module {
+              width: 100%; /* Para mostrar un módulo por fila en dispositivos móviles */
+            }
+
+            .last-modules {
+              width: 100%; /* También se muestra en una columna en dispositivos móviles */
+            }
+          }
+
+          .practica {
+            text-align: center;
+            background-color: black;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 40px;
+            color: blue;
+            width: 100%;
+            margin-bottom: 20px;
+          }
+
+          @media (max-width: 768px) {
+            .module {
+              width: calc(40% - 30px);
+              margin-top: 60px;
+            }
+          }
+
+          /* Estilos para el botón fijo */
+          .fixed-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999; /* Asegura que esté por encima de otros elementos */
+            background-color: #007bff; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            padding: 10px 20px; /* Espaciado interno */
+            cursor: pointer; /* Cursor al pasar por encima */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+          }
+
+          .fixed-button:hover {
+            background-color: #0056b3; /* Color de fondo al pasar por encima */
+          }
+
+          .fixed-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+          }
+
+          .playing {
+            color: blue;
+          }
+
+          .pronoun {
+            margin-bottom: 5px; /* Espacio entre elementos reducido */
+            font-size: 14px; /* Tamaño de fuente reducido */
+          }
+          .divider {
+            margin-bottom: 3px; /* Espacio entre el texto y el divisor reducido */
+          }
+
+          /* TAMAÑO DE LA LETRA Y LA CORRE MAS ALA DERECHA  */
+          @media screen and (max-width: 768px) {
+            .pronoun {
+              font-size: 14px; /* Reducción adicional del tamaño de fuente */
+              padding-left: 28px;
+            }
+          }
+        </style>
+
+        <button id="playButton" class="fixed-button play">
+          <i class="fas fa-play"></i> Reproducir Todos
+        </button>
+
+        <div class="corner-text">TECH</div>
+
+        <!-- Seccion de categorias -->
+
+        <h1 class="practica">ORGANOS</h1>
+
+        <!-- Frases de texto **************************************************** -->
+
+        <a href="pagina7.html" class="redirectButton">Siguiente</a>
+        <a href="pagina5.html" class="goBackButton">Retroceder</a>
+
+        <ul>
+          <li class="pronoun">
+            <span style="color: red">Brain /</span> Cerebro
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/cerebro.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Lungs /</span> Pulmones
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/pulmones.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Liver /</span> Hígado
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/higado.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Kidneys /</span> Riñones
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/Riñones.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Stomach /</span> Estómago
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/estomago.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Skin /</span> Piel
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/piel.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Eyes /</span> Ojos
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/ojos.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Bones /</span> Huesos
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/huesos.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Pancreas /</span> Páncreas
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/pancreas.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Spleen /</span> Bazo
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/bazo.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Bladder /</span> Vejiga
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/vejiga.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Intestines /</span> Intestinos
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/intestinos.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Thyroid /</span> Tiroides
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/tiroides.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Adrenal Glands /</span> Glándulas
+            suprarrenales
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source
+                src="organos/glandulas-supurrenales.wav"
+                type="audio/mp3"
+              />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Gallbladder /</span> Vesícula biliar
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/vesicula-billear.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Spinal Cord /</span> Médula espinal
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/medula-espinal.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Esophagus /</span> Esófago
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/esofago.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Diaphragm /</span> Diafragma
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/diafrajma.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Pituitary Gland /</span> Glándula
+            pituitaria
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/glandula-pitutaria.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Thymus /</span> Timo
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/timo.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Pineal Gland /</span> Glándula pineal
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/glandula-pineal.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Appendix /</span> Apéndice
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/apendice.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Tonsils /</span> Amígdalas
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/amigdalas.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Thyroid Cartilage /</span> Cartílago
+            tiroides
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/cartilago-tiroides.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Trachea /</span> Tráquea
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/traquea.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Uterus /</span> Útero
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/utero.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Ovaries /</span> Ovarios
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/ovario.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Prostate /</span> Próstata
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/prostata.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">Testes /</span> Testículos
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="organos/testiculos.wav" type="audio/mp3" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <!-- Puedes seguir añadiendo más órganos del cuerpo humano con el mismo formato -->
+
+          <!-- **************************** -->
+        </ul>
+
+        <!-- SISTEMA DE REPRODUCCIO DE AUDIOS *****************************************++ -->
+        <script>
+          var audios = document.querySelectorAll("audio");
+          var playButton = document.getElementById("playButton");
+          var currentIndex = 0;
+          var reproduciendo = false;
+          var tiemposDeReproduccion = []; // Array para almacenar los tiempos de reproducción
+
+          function reproducirAudios() {
+            reproduciendo = true;
+            playButton.innerHTML = '<i class="fas fa-pause"></i> Pausar Todos';
+            reproducirSiguiente();
+          }
+
+          function reproducirSiguiente() {
+            if (currentIndex < audios.length) {
+              var audio = audios[currentIndex];
+              audio.currentTime = tiemposDeReproduccion[currentIndex] || 0; // Restaurar el tiempo de reproducción
+              audio.play();
+              audio.addEventListener("ended", reproducirSiguiente);
+              // Resaltar solo el texto correspondiente al audio actual
+              resaltarTexto(audio.parentNode);
+              // Desplazar el elemento al área visible
+              audio.parentNode.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+              currentIndex++;
+            } else {
+              currentIndex = 0;
+              reproducirSiguiente();
+            }
+          }
+
+          function detenerAudios() {
+            reproduciendo = false;
+            audios.forEach((audio, index) => {
+              audio.pause();
+              tiemposDeReproduccion[index] = audio.currentTime; // Guardar el tiempo de reproducción
+              audio.currentTime = 0;
+              // Eliminar el color azul del texto
+              audio.parentNode.classList.remove("playing");
+            });
+            playButton.innerHTML =
+              '<i class="fas fa-play"></i> Reproducir Todos';
+          }
+
+          function resaltarTexto(elemento) {
+            // Eliminar la clase "playing" de todos los elementos de audio
+            audios.forEach((audio) => {
+              audio.parentNode.classList.remove("playing");
+            });
+            // Resaltar solo el elemento actual
+            elemento.classList.add("playing");
+          }
+
+          playButton.addEventListener("click", function () {
+            if (!reproduciendo) {
+              reproducirAudios();
+            } else {
+              detenerAudios();
+            }
+          });
+        </script>
+      </body>
+    </html>
+  </body>
+</html>

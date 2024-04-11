@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planificación urbana sostenible y movilidad activa</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto55.html" class="redirectButton">Siguiente</a>
+    <a href="texto53.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">
+      Planificación urbana sostenible y movilidad activa
+    </h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Sustainable urban planning emphasizes the development of cities and
+          communities that prioritize environmental protection, social equity,
+          and economic viability.
+        </p>
+
+        <p data-start="10">
+          Integrated approaches to urban design and transportation promote
+          active mobility options such as walking, cycling, and public transit,
+          reducing reliance on cars and mitigating traffic congestion and
+          pollution.
+        </p>
+
+        <p data-start="23">
+          By fostering compact, mixed-use developments with accessible green
+          spaces and efficient infrastructure, sustainable urban planning
+          enhances quality of life while minimizing ecological impact.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La planificación urbana sostenible enfatiza el desarrollo de ciudades
+          y comunidades que priorizan la protección ambiental, la equidad social
+          y la viabilidad económica.
+        </p>
+
+        <p data-start="10">
+          Los enfoques integrados para el diseño urbano y el transporte
+          promueven opciones de movilidad activa como caminar, andar en
+          bicicleta y el transporte público, reduciendo la dependencia de los
+          automóviles y mitigando la congestión del tráfico y la contaminación.
+        </p>
+
+        <p data-start="23">
+          Al fomentar desarrollos compactos y de uso mixto con espacios verdes
+          accesibles e infraestructura eficiente, la planificación urbana
+          sostenible mejora la calidad de vida mientras minimiza el impacto
+          ecológico.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto54.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

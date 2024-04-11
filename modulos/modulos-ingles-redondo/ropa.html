@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="logo/logo-color.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="questioninglis.js"></script>
+    <script src="codigoacces.js"></script>
+    <script src="solicitarcodigo.js"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <title>ESTACIONES</title>
+  </head>
+  <body>
+    <a href="https://tempssll.github.io/videos-blow-713/">
+      <button class="inicio">INICIO</button>
+    </a>
+    <br /><br />
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Modulos ingles</title>
+      </head>
+      <body>
+        <style>
+          body {
+            margin: auto;
+            background-color: azure;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+          .module {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* Hace que los módulos sean redondos */
+            margin: 10px 20px; /* Separación horizontal y vertical */
+            float: left;
+            text-align: center; /* Centra el texto dentro del módulo */
+            text-decoration: none; /* Elimina el subrayado del enlace */
+            color: black; /* Color del texto */
+            position: relative; /* Permite posicionar el texto de manera absoluta */
+            border: 1px solid gold; /* Borde dorado */
+          }
+          .module img {
+            width: 100%;
+            height: 100%; /* Asegura que la imagen ocupe todo el espacio dentro del módulo */
+            display: block;
+            border-radius: 50%; /* Hace que la imagen sea redonda */
+          }
+          .module p {
+            position: absolute; /* Posiciona el texto absolutamente dentro del módulo */
+            bottom: -68px; /* Ajusta la posición del texto verticalmente */
+            width: 100%; /* Asegura que el texto ocupe todo el ancho del módulo */
+            margin-top: 100px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 20px;
+          }
+
+          .last-modules {
+            margin-top: 90px;
+          }
+
+          @media only screen and (max-width: 600px) {
+            .module {
+              width: 100%; /* Para mostrar un módulo por fila en dispositivos móviles */
+            }
+
+            .last-modules {
+              width: 100%; /* También se muestra en una columna en dispositivos móviles */
+            }
+          }
+
+          .practica {
+            text-align: center;
+            background-color: black;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 40px;
+            color: blue;
+            width: 100%;
+            margin-bottom: 20px;
+          }
+
+          @media (max-width: 768px) {
+            .module {
+              width: calc(40% - 30px);
+              margin-top: 60px;
+            }
+          }
+
+          /* Estilos para el botón fijo */
+          .fixed-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999; /* Asegura que esté por encima de otros elementos */
+            background-color: #007bff; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            padding: 10px 20px; /* Espaciado interno */
+            cursor: pointer; /* Cursor al pasar por encima */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+          }
+
+          .fixed-button:hover {
+            background-color: #0056b3; /* Color de fondo al pasar por encima */
+          }
+
+          .fixed-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+          }
+
+          .playing {
+            color: blue;
+          }
+
+          .pronoun {
+            margin-bottom: 5px; /* Espacio entre elementos reducido */
+            font-size: 14px; /* Tamaño de fuente reducido */
+          }
+          .divider {
+            margin-bottom: 3px; /* Espacio entre el texto y el divisor reducido */
+          }
+
+          /* TAMAÑO DE LA LETRA Y LA CORRE MAS ALA DERECHA  */
+          @media screen and (max-width: 768px) {
+            .pronoun {
+              font-size: 14px; /* Reducción adicional del tamaño de fuente */
+              padding-left: 28px;
+            }
+          }
+        </style>
+
+        <button id="playButton" class="fixed-button play">
+          <i class="fas fa-play"></i> Reproducir Todos
+        </button>
+
+        <div class="corner-text">TECH</div>
+
+        <!-- Seccion de categorias -->
+
+        <h1 class="practica">ROPA</h1>
+
+        <a href="casa.html" class="redirectButton">Siguiente</a>
+        <a href="11.html" class="goBackButton">Retroceder</a>
+
+        <!-- Frases de texto **************************************************** -->
+
+        <ul>
+          <li class="pronoun">
+            <span style="color: red">Shirt /</span> Camisa
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/camisa.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Pants /</span> Pantalones
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/pantalones.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Dress /</span> Vestido
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/vestido.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Skirt /</span> Falda
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/falda.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Coat /</span> Abrigo
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/abrigo.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <!-- Agrega más elementos de la lista según sea necesario -->
+          <li class="pronoun">
+            <span style="color: red">Sweater /</span> Suéter
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/Suéter.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Jacket /</span> Chaqueta
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/Chaqueta.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Shorts /</span> Pantalones cortos
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/Pantalones cortos.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Socks /</span> Calcetines
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/Calcetines.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Shoes /</span> Zapatos
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/Zapatos.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Dress shirt /</span> Camisa de vestir
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/Camisa de vestir.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Blouse /</span> Blusa
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/Blusa.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Trousers /</span> Pantalones de vestir
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/Pantalones de vestir.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <!-- Agrega más elementos de la lista según sea necesario -->
+          <li class="pronoun">
+            <span style="color: red">Sweater /</span> Suéter
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/sueter.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Hat /</span> Sombrero
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="ropa/sombrero.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <!-- Puedes seguir añadiendo más órganos del cuerpo humano con el mismo formato -->
+
+          <!-- **************************** -->
+        </ul>
+
+        <!-- SISTEMA DE REPRODUCCIO DE AUDIOS *****************************************++ -->
+        <script>
+          var audios = document.querySelectorAll("audio");
+          var playButton = document.getElementById("playButton");
+          var currentIndex = 0;
+          var reproduciendo = false;
+          var tiemposDeReproduccion = []; // Array para almacenar los tiempos de reproducción
+
+          function reproducirAudios() {
+            reproduciendo = true;
+            playButton.innerHTML = '<i class="fas fa-pause"></i> Pausar Todos';
+            reproducirSiguiente();
+          }
+
+          function reproducirSiguiente() {
+            if (currentIndex < audios.length) {
+              var audio = audios[currentIndex];
+              audio.currentTime = tiemposDeReproduccion[currentIndex] || 0; // Restaurar el tiempo de reproducción
+              audio.play();
+              audio.addEventListener("ended", reproducirSiguiente);
+              // Resaltar solo el texto correspondiente al audio actual
+              resaltarTexto(audio.parentNode);
+              // Desplazar el elemento al área visible
+              audio.parentNode.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+              currentIndex++;
+            } else {
+              currentIndex = 0;
+              reproducirSiguiente();
+            }
+          }
+
+          function detenerAudios() {
+            reproduciendo = false;
+            audios.forEach((audio, index) => {
+              audio.pause();
+              tiemposDeReproduccion[index] = audio.currentTime; // Guardar el tiempo de reproducción
+              audio.currentTime = 0;
+              // Eliminar el color azul del texto
+              audio.parentNode.classList.remove("playing");
+            });
+            playButton.innerHTML =
+              '<i class="fas fa-play"></i> Reproducir Todos';
+          }
+
+          function resaltarTexto(elemento) {
+            // Eliminar la clase "playing" de todos los elementos de audio
+            audios.forEach((audio) => {
+              audio.parentNode.classList.remove("playing");
+            });
+            // Resaltar solo el elemento actual
+            elemento.classList.add("playing");
+          }
+
+          playButton.addEventListener("click", function () {
+            if (!reproduciendo) {
+              reproducirAudios();
+            } else {
+              detenerAudios();
+            }
+          });
+        </script>
+      </body>
+    </html>
+  </body>
+</html>

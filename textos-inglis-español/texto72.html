@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Música electrónica: evolución y tendencias</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto73.html" class="redirectButton">Siguiente</a>
+    <a href="texto71.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Música electrónica: evolución y tendencias</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Electronic music has undergone a remarkable evolution since its
+          inception in the mid-20th century, embracing a wide range of styles
+          and genres.
+        </p>
+
+        <p data-start="9">
+          From the experimental sounds of early synthesizers to the pulsating
+          beats of modern EDM, electronic music continues to push boundaries and
+          redefine the sonic landscape.
+        </p>
+
+        <p data-start="19">
+          Emerging trends such as ambient, techno, and house reflect the diverse
+          influences and innovative techniques shaping the contemporary
+          electronic music scene.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La música electrónica ha experimentado una notable evolución desde su
+          inicio a mediados del siglo XX, abarcando una amplia gama de estilos y
+          géneros.
+        </p>
+
+        <p data-start="9">
+          Desde los sonidos experimentales de los primeros sintetizadores hasta
+          los ritmos pulsantes del EDM moderno, la música electrónica continúa
+          empujando límites y redefiniendo el paisaje sonoro.
+        </p>
+
+        <p data-start="19">
+          Tendencias emergentes como el ambient, el techno y el house reflejan
+          las diversas influencias y técnicas innovadoras que dan forma a la
+          escena musical electrónica contemporánea.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto72.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

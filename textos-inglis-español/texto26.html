@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programación Concurrente</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      #textContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .paragraph-container {
+        flex: 1 1 45%;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: 1px solid gold;
+      }
+
+      .paragraph-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .paragraph-container p {
+        margin-bottom: 10px;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .highlight-english {
+        color: blue;
+        font-weight: bold;
+      }
+
+      .highlight-spanish {
+        color: red;
+        font-weight: bold;
+      }
+
+      .inicio {
+        position: fixed;
+        font-size: 20px;
+        color: red;
+        background-color: black;
+        /* Ajusta esta cantidad para cambiar la distancia desde abajo */
+        bottom: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la parte inferior */
+        left: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la izquierda */
+        cursor: pointer;
+      }
+
+      .inglish {
+        font-family: "Times New Roman", Times, serif;
+        color: blue;
+      }
+
+      .español {
+        font-family: "Times New Roman", Times, serif;
+        color: red;
+      }
+
+      #audioContainer {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      #audio {
+        background-color: #0056b3; /* Azul */
+        color: #ffffff;
+        border: none;
+        border-radius: 25px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #audio:hover {
+        background-color: #003366; /* Azul oscuro */
+      }
+    </style>
+  </head>
+  <body>
+
+    <a href="texto27.html" class="redirectButton">Siguiente</a>
+    <a href="texto25.html" class="goBackButton">Retroceder</a>
+
+
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Programación Concurrente</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Concurrent programming is a programming paradigm that focuses on executing multiple tasks simultaneously within a program. Instead of running tasks sequentially one after the other, in concurrent programming, tasks can run concurrently, thus improving the efficiency and responsiveness of the system.
+        </p>
+
+        <p data-start="20">
+          Some key concepts in concurrent programming include:
+          Processes and Threads:</strong> In a concurrent system, tasks can be executed as separate processes or as threads within a process.</li>
+            Synchronization:</strong> It's important to synchronize access to shared resources to avoid concurrency issues.</li>
+            Communication between Processes/Threads:</strong> Concurrent processes or threads may need to communicate with each other to coordinate their work or exchange data.</li>
+            Concurrency vs. Parallelism:</strong> Concurrency refers to the simultaneous execution of multiple tasks, while parallelism involves the actual simultaneous execution of tasks on multiple CPU cores.</li>
+          
+           </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La programación concurrente es un paradigma de programación que se centra en la ejecución simultánea de múltiples tareas dentro de un programa. En lugar de ejecutar las tareas secuencialmente una después de la otra, en la programación concurrente, las tareas pueden ejecutarse de forma simultánea, mejorando así la eficiencia y la capacidad de respuesta del sistema.
+        </p>
+
+        <p data-start="20">
+          Algunos conceptos clave en la programación concurrente incluyen:
+           Procesos y Hilos:</strong> En un sistema concurrente, las tareas se pueden ejecutar como procesos separados o como hilos dentro de un proceso.</li>
+           Sincronización:</strong> Es importante sincronizar el acceso a los recursos compartidos para evitar problemas de concurrencia.</li>
+            Comunicación entre Procesos/Hilos:</strong> Los procesos o hilos concurrentes pueden necesitar comunicarse entre sí para coordinar su trabajo o intercambiar datos.</li>
+            Concurrencia vs. Paralelismo:</strong> La concurrencia se refiere a la ejecución simultánea de múltiples tareas, mientras que el paralelismo implica la ejecución simultánea real de tareas en múltiples núcleos de CPU.</li>
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto26.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

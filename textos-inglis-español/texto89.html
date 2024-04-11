@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brecha educativa entre áreas urbanas y rurales</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto90.html" class="redirectButton">Siguiente</a>
+    <a href="texto88.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Brecha educativa entre áreas urbanas y rurales</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          The educational gap between urban and rural areas highlights
+          disparities in access to quality education, resources, and
+          opportunities, affecting academic outcomes and future prospects for
+          individuals in rural communities.
+        </p>
+
+        <p data-start="13">
+          Factors such as inadequate infrastructure, limited funding, teacher
+          shortages, and cultural differences contribute to this divide,
+          requiring targeted interventions and investments to bridge the gap and
+          ensure equal educational opportunities for all students, regardless of
+          their geographic location.
+        </p>
+
+        <p data-start="31">
+          Addressing this issue is crucial for promoting social mobility,
+          reducing poverty, and fostering inclusive development in both urban
+          and rural areas, ultimately building a more equitable society.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La brecha educativa entre áreas urbanas y rurales pone de relieve las
+          disparidades en el acceso a una educación de calidad, recursos y
+          oportunidades, lo que afecta los resultados académicos y las
+          perspectivas futuras para las personas en las comunidades rurales.
+        </p>
+
+        <p data-start="13">
+          Factores como la infraestructura inadecuada, la financiación limitada,
+          la escasez de docentes y las diferencias culturales contribuyen a esta
+          brecha, lo que requiere intervenciones y inversiones específicas para
+          cerrar la brecha y garantizar oportunidades educativas iguales para
+          todos los estudiantes, independientemente de su ubicación geográfica.
+        </p>
+
+        <p data-start="31">
+          Abordar este problema es crucial para promover la movilidad social,
+          reducir la pobreza y fomentar el desarrollo inclusivo tanto en áreas
+          urbanas como rurales, construyendo en última instancia una sociedad
+          más equitativa.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto89.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="logo/logo-color.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="questioninglis.js"></script>
+    <script src="codigoacces.js"></script>
+    <script src="solicitarcodigo.js"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <title></title>
+  </head>
+  <body>
+    <a href="https://tempssll.github.io/videos-blow-713/">
+      <button class="inicio">INICIO</button>
+    </a>
+    <br /><br />
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Modulos ingles</title>
+      </head>
+      <body>
+        <style>
+          body {
+            margin: auto;
+            background-color: azure;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+          .module {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* Hace que los módulos sean redondos */
+            margin: 10px 20px; /* Separación horizontal y vertical */
+            float: left;
+            text-align: center; /* Centra el texto dentro del módulo */
+            text-decoration: none; /* Elimina el subrayado del enlace */
+            color: black; /* Color del texto */
+            position: relative; /* Permite posicionar el texto de manera absoluta */
+            border: 1px solid gold; /* Borde dorado */
+          }
+          .module img {
+            width: 100%;
+            height: 100%; /* Asegura que la imagen ocupe todo el espacio dentro del módulo */
+            display: block;
+            border-radius: 50%; /* Hace que la imagen sea redonda */
+          }
+          .module p {
+            position: absolute; /* Posiciona el texto absolutamente dentro del módulo */
+            bottom: -68px; /* Ajusta la posición del texto verticalmente */
+            width: 100%; /* Asegura que el texto ocupe todo el ancho del módulo */
+            margin-top: 100px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 20px;
+          }
+
+          .last-modules {
+            margin-top: 90px;
+          }
+
+          @media only screen and (max-width: 600px) {
+            .module {
+              width: 100%; /* Para mostrar un módulo por fila en dispositivos móviles */
+            }
+
+            .last-modules {
+              width: 100%; /* También se muestra en una columna en dispositivos móviles */
+            }
+          }
+
+          .practica {
+            text-align: center;
+            background-color: black;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 40px;
+            color: blue;
+            width: 100%;
+            margin-bottom: 20px;
+          }
+
+          @media (max-width: 768px) {
+            .module {
+              width: calc(40% - 30px);
+              margin-top: 60px;
+            }
+          }
+
+          /* Estilos para el botón fijo */
+          .fixed-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999; /* Asegura que esté por encima de otros elementos */
+            background-color: #007bff; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            padding: 10px 20px; /* Espaciado interno */
+            cursor: pointer; /* Cursor al pasar por encima */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+          }
+
+          .fixed-button:hover {
+            background-color: #0056b3; /* Color de fondo al pasar por encima */
+          }
+
+          .fixed-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+          }
+
+          .playing {
+            color: blue;
+          }
+
+          .pronoun {
+            margin-bottom: 5px; /* Espacio entre elementos reducido */
+            font-size: 14px; /* Tamaño de fuente reducido */
+          }
+          .divider {
+            margin-bottom: 3px; /* Espacio entre el texto y el divisor reducido */
+          }
+
+          /* TAMAÑO DE LA LETRA Y LA CORRE MAS ALA DERECHA  */
+          @media screen and (max-width: 768px) {
+            .pronoun {
+              font-size: 14px; /* Reducción adicional del tamaño de fuente */
+              padding-left: 28px;
+            }
+          }
+        </style>
+
+        <button id="playButton" class="fixed-button play">
+          <i class="fas fa-play"></i> Reproducir Todos
+        </button>
+
+        <div class="corner-text">TECH</div>
+
+        <!-- Seccion de categorias -->
+
+        <h1 class="practica">SEÑALES</h1>
+
+        <a href="negocio.html" class="redirectButton">Siguiente</a>
+        <a href="aves.html" class="goBackButton">Retroceder</a>
+
+        <!-- Frases de texto **************************************************** -->
+
+        <ul>
+          <!-- **************************** -->
+          <li class="pronoun">
+            <span style="color: red">Stop /</span> Alto
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/alto.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Danger /</span> Peligro
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/peligro.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Exit /</span> Salida
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/salida.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Speed Limit /</span> Límite de velocidad
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/limite_de_velocidad.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Parking /</span> Estacionamiento
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/estacionamiento.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+
+          <li class="pronoun">
+            <span style="color: red">No Entry /</span> Prohibido el paso
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/prohibido_el_paso.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">One Way /</span> Dirección única
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/direccion_unica.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Pedestrian Crossing /</span> Paso de
+            peatones
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/paso_de_peatones.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">School Zone /</span> Zona escolar
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/zona_escolar.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Railroad Crossing /</span> Paso a nivel
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/paso_a_nivel.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">No Parking /</span> Prohibido estacionar
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/prohibido_estacionar.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Hospital /</span> Hospital
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/hospital.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Airport /</span> Aeropuerto
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/aeropuerto.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Traffic Light /</span> Semáforo
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/semaforo.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Crosswalk /</span> Paso de peatones
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/paso_de_peatones (2).wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Bicycle Lane /</span> Carril para
+            bicicletas
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source
+                src="Senales/carril_para_bicicletas.wav"
+                type="audio/wav"
+              />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Construction Zone /</span> Zona de
+            construcción
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/zona_de_construccion.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">Roundabout /</span> Glorieta
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source src="Senales/glorieta.wav" type="audio/wav" />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">No U-Turn /</span> Prohibido dar la vuelta
+            en U
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source
+                src="Senales/prohibido_dar_la_vuelta_en_u.wav"
+                type="audio/wav"
+              />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+          <li class="pronoun">
+            <span style="color: red">No Right Turn /</span> No girar a la
+            derecha
+            <div class="divider"></div>
+            <audio controls class="audio">
+              <source
+                src="Senales/no_girar_a_la_derecha.wav"
+                type="audio/wav"
+              />
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </li>
+        </ul>
+
+        <!-- SISTEMA DE REPRODUCCIO DE AUDIOS *****************************************++ -->
+        <script>
+          var audios = document.querySelectorAll("audio");
+          var playButton = document.getElementById("playButton");
+          var currentIndex = 0;
+          var reproduciendo = false;
+          var tiemposDeReproduccion = []; // Array para almacenar los tiempos de reproducción
+
+          function reproducirAudios() {
+            reproduciendo = true;
+            playButton.innerHTML = '<i class="fas fa-pause"></i> Pausar Todos';
+            reproducirSiguiente();
+          }
+
+          function reproducirSiguiente() {
+            if (currentIndex < audios.length) {
+              var audio = audios[currentIndex];
+              audio.currentTime = tiemposDeReproduccion[currentIndex] || 0; // Restaurar el tiempo de reproducción
+              audio.play();
+              audio.addEventListener("ended", reproducirSiguiente);
+              // Resaltar solo el texto correspondiente al audio actual
+              resaltarTexto(audio.parentNode);
+              // Desplazar el elemento al área visible
+              audio.parentNode.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+              currentIndex++;
+            } else {
+              currentIndex = 0;
+              reproducirSiguiente();
+            }
+          }
+
+          function detenerAudios() {
+            reproduciendo = false;
+            audios.forEach((audio, index) => {
+              audio.pause();
+              tiemposDeReproduccion[index] = audio.currentTime; // Guardar el tiempo de reproducción
+              audio.currentTime = 0;
+              // Eliminar el color azul del texto
+              audio.parentNode.classList.remove("playing");
+            });
+            playButton.innerHTML =
+              '<i class="fas fa-play"></i> Reproducir Todos';
+          }
+
+          function resaltarTexto(elemento) {
+            // Eliminar la clase "playing" de todos los elementos de audio
+            audios.forEach((audio) => {
+              audio.parentNode.classList.remove("playing");
+            });
+            // Resaltar solo el elemento actual
+            elemento.classList.add("playing");
+          }
+
+          playButton.addEventListener("click", function () {
+            if (!reproduciendo) {
+              reproducirAudios();
+            } else {
+              detenerAudios();
+            }
+          });
+        </script>
+      </body>
+    </html>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tecnologías de captura directa de aire (DAC) de carbono</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto54.html" class="redirectButton">Siguiente</a>
+    <a href="texto52.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">
+      Tecnologías de captura directa de aire (DAC) de carbono
+    </h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Direct Air Capture (DAC) technologies are innovative solutions for
+          removing carbon dioxide directly from the atmosphere, offering a
+          promising approach to combating climate change.
+        </p>
+
+        <p data-start="11">
+          These technologies use various chemical processes and materials to
+          capture CO2 molecules from the air, enabling the sequestration or
+          conversion of captured carbon for beneficial use.
+        </p>
+
+        <p data-start="22">
+          DAC systems have the potential to play a significant role in
+          mitigating greenhouse gas emissions and achieving carbon neutrality
+          targets in the fight against global warming.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          Las tecnologías de Captura Directa de Aire (DAC, por sus siglas en
+          inglés) son soluciones innovadoras para eliminar dióxido de carbono
+          directamente de la atmósfera, ofreciendo un enfoque prometedor para
+          combatir el cambio climático.
+        </p>
+
+        <p data-start="11">
+          Estas tecnologías utilizan diversos procesos químicos y materiales
+          para capturar moléculas de CO2 del aire, lo que permite la
+          secuestración o conversión del carbono capturado para un uso
+          beneficioso.
+        </p>
+
+        <p data-start="22">
+          Los sistemas DAC tienen el potencial de desempeñar un papel
+          significativo en la mitigación de las emisiones de gases de efecto
+          invernadero y en el logro de objetivos de neutralidad de carbono en la
+          lucha contra el calentamiento global.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto53.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

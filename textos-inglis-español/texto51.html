@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electrificación de sistemas de calefacción y refrigeración</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto52.html" class="redirectButton">Siguiente</a>
+    <a href="texto50.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">
+      Electrificación de sistemas de calefacción y refrigeración
+    </h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          The electrification of heating and cooling systems is a key strategy
+          for reducing greenhouse gas emissions and transitioning to renewable
+          energy sources.
+        </p>
+
+        <p data-start="8">
+          By replacing fossil fuel-based heating and cooling technologies with
+          electric alternatives, we can achieve significant reductions in carbon
+          emissions and improve air quality.
+        </p>
+
+        <p data-start="19">
+          Electrified systems, such as heat pumps and electric heaters, offer
+          efficient and environmentally friendly solutions for maintaining
+          indoor comfort while minimizing environmental impact.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La electrificación de los sistemas de calefacción y refrigeración es
+          una estrategia clave para reducir las emisiones de gases de efecto
+          invernadero y hacer la transición a fuentes de energía renovable.
+        </p>
+
+        <p data-start="8">
+          Al reemplazar las tecnologías de calefacción y refrigeración basadas
+          en combustibles fósiles por alternativas eléctricas, podemos lograr
+          reducciones significativas en las emisiones de carbono y mejorar la
+          calidad del aire.
+        </p>
+
+        <p data-start="19">
+          Los sistemas electrificados, como las bombas de calor y los
+          calentadores eléctricos, ofrecen soluciones eficientes y respetuosas
+          con el medio ambiente para mantener el confort interior al tiempo que
+          se minimiza el impacto ambiental.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto511.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

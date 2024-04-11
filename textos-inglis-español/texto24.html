@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Análisis Predictivo</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      #textContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .paragraph-container {
+        flex: 1 1 45%;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: 1px solid gold;
+      }
+
+      .paragraph-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .paragraph-container p {
+        margin-bottom: 10px;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .highlight-english {
+        color: blue;
+        font-weight: bold;
+      }
+
+      .highlight-spanish {
+        color: red;
+        font-weight: bold;
+      }
+
+      .inicio {
+        position: fixed;
+        font-size: 20px;
+        color: red;
+        background-color: black;
+        /* Ajusta esta cantidad para cambiar la distancia desde abajo */
+        bottom: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la parte inferior */
+        left: 20px; /* Ajusta esta cantidad para cambiar la distancia desde la izquierda */
+        cursor: pointer;
+      }
+
+      .inglish {
+        font-family: "Times New Roman", Times, serif;
+        color: blue;
+      }
+
+      .español {
+        font-family: "Times New Roman", Times, serif;
+        color: red;
+      }
+
+      #audioContainer {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      #audio {
+        background-color: #0056b3; /* Azul */
+        color: #ffffff;
+        border: none;
+        border-radius: 25px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #audio:hover {
+        background-color: #003366; /* Azul oscuro */
+      }
+    </style>
+  </head>
+  <body>
+    <a href="texto25.html" class="redirectButton">Siguiente</a>
+    <a href="texto23.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Análisis Predictivo</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Predictive analytics is a data analysis technique that uses algorithms
+          and statistical models to predict future events or trends based on
+          historical and current data.
+        </p>
+
+        <p data-start="12">
+          This approach is used in a variety of fields, such as marketing,
+          finance, healthcare, industry, among others.
+        </p>
+
+        <p data-start="20">
+          Predictive analytics enables organizations to anticipate outcomes,
+          mitigate risks, and make informed decisions by leveraging data-driven
+          insights.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          El análisis predictivo es una técnica de análisis de datos que utiliza
+          algoritmos y modelos estadísticos para predecir eventos futuros o
+          tendencias basadas en datos históricos y actuales.
+        </p>
+
+        <p data-start="12">
+          Este enfoque se utiliza en una variedad de campos, como el marketing,
+          las finanzas, la salud, la industria, entre otros.
+        </p>
+
+        <p data-start="20">
+          El análisis predictivo permite a las organizaciones anticipar
+          resultados, mitigar riesgos y tomar decisiones informadas mediante el
+          aprovechamiento de ideas impulsadas por datos.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto24.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

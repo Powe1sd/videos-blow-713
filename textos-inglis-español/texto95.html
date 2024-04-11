@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brecha de acceso a la justicia entre grupos socioeconómicos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto96.html" class="redirectButton">Siguiente</a>
+    <a href="texto94.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">
+      Brecha de acceso a la justicia entre grupos socioeconómicos
+    </h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          The gap in access to justice between socio-economic groups highlights
+          systemic inequalities within legal systems, often disadvantaging
+          marginalized communities.
+        </p>
+
+        <p data-start="9">
+          Factors such as income, education level, and geographic location can
+          influence individuals' ability to access legal services,
+          representation, and fair treatment under the law.
+        </p>
+
+        <p data-start="21">
+          Addressing this gap requires reforms to make legal processes more
+          accessible, equitable distribution of legal aid resources, and efforts
+          to promote awareness of rights and legal pathways among vulnerable
+          populations.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La brecha de acceso a la justicia entre grupos socioeconómicos pone de
+          manifiesto las desigualdades sistémicas dentro de los sistemas
+          legales, a menudo desfavoreciendo a comunidades marginadas.
+        </p>
+
+        <p data-start="9">
+          Factores como el ingreso, el nivel educativo y la ubicación geográfica
+          pueden influir en la capacidad de las personas para acceder a
+          servicios legales, representación y un trato justo bajo la ley.
+        </p>
+
+        <p data-start="21">
+          Abordar esta brecha requiere reformas para hacer que los procesos
+          legales sean más accesibles, distribución equitativa de recursos de
+          asistencia legal y esfuerzos para promover la conciencia de los
+          derechos y vías legales entre las poblaciones vulnerables.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto95.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

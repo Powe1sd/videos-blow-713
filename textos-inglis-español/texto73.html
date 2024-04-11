@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cambio demográfico y envejecimiento de la población</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto74.html" class="redirectButton">Siguiente</a>
+    <a href="texto72.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">
+      Cambio demográfico y envejecimiento de la población
+    </h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Demographic shifts and population aging are significant global trends,
+          driven by factors such as declining fertility rates and increased life
+          expectancy.
+        </p>
+
+        <p data-start="9">
+          These changes have profound implications for societies, including
+          challenges related to healthcare, retirement systems, and workforce
+          dynamics.
+        </p>
+
+        <p data-start="18">
+          Adapting to an aging population requires innovative solutions and
+          policies that address issues such as healthcare access, social
+          inclusion, and economic sustainability.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          Los cambios demográficos y el envejecimiento de la población son
+          tendencias globales significativas, impulsadas por factores como la
+          disminución de las tasas de fertilidad y el aumento de la esperanza de
+          vida.
+        </p>
+
+        <p data-start="9">
+          Estos cambios tienen profundas implicaciones para las sociedades,
+          incluidos desafíos relacionados con la atención médica, los sistemas
+          de jubilación y la dinámica laboral.
+        </p>
+
+        <p data-start="18">
+          Adaptarse a una población envejecida requiere soluciones innovadoras y
+          políticas que aborden cuestiones como el acceso a la atención médica,
+          la inclusión social y la sostenibilidad económica.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto73.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

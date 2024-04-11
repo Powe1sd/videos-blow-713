@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desigualdad en el acceso a oportunidades de empleo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto83.html" class="redirectButton">Siguiente</a>
+    <a href="texto81.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">
+      Desigualdad en el acceso a oportunidades de empleo
+    </h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Inequality in access to employment opportunities persists, with
+          disparities in hiring practices, promotion rates, and access to
+          higher-paying positions.
+        </p>
+
+        <p data-start="9">
+          Marginalized groups, including racial minorities, women, and people
+          with disabilities, often face barriers to entry and advancement in the
+          workforce, perpetuating cycles of economic disadvantage.
+        </p>
+
+        <p data-start="22">
+          Addressing structural barriers and implementing inclusive policies are
+          essential steps toward creating equitable employment opportunities for
+          all individuals.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La desigualdad en el acceso a oportunidades de empleo persiste, con
+          disparidades en las prácticas de contratación, las tasas de promoción
+          y el acceso a posiciones mejor remuneradas.
+        </p>
+
+        <p data-start="9">
+          Los grupos marginados, incluidas las minorías raciales, las mujeres y
+          las personas con discapacidad, a menudo enfrentan barreras para el
+          ingreso y el avance en la fuerza laboral, perpetuando ciclos de
+          desventaja económica.
+        </p>
+
+        <p data-start="22">
+          Abordar las barreras estructurales e implementar políticas inclusivas
+          son pasos esenciales hacia la creación de oportunidades de empleo
+          equitativas para todas las personas.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto82.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

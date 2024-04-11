@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neurociencia y toma de decisiones</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto65.html" class="redirectButton">Siguiente</a>
+    <a href="texto63.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Neurociencia y toma de decisiones</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Neuroscience provides insights into the mechanisms underlying
+          decision-making, shedding light on how the brain processes
+          information, evaluates options, and selects actions.
+        </p>
+
+        <p data-start="11">
+          Through techniques such as functional MRI and EEG, researchers can
+          observe neural activity in real-time, revealing the interplay between
+          emotions, cognition, and behavior during decision-making tasks.
+        </p>
+
+        <p data-start="24">
+          Understanding the neural basis of decision-making has implications for
+          fields ranging from economics and marketing to psychology and public
+          policy, informing strategies to improve decision quality and outcomes.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La neurociencia proporciona información sobre los mecanismos
+          subyacentes a la toma de decisiones, arrojando luz sobre cómo el
+          cerebro procesa la información, evalúa las opciones y selecciona
+          acciones.
+        </p>
+
+        <p data-start="11">
+          A través de técnicas como la resonancia magnética funcional (fMRI) y
+          el electroencefalograma (EEG), los investigadores pueden observar la
+          actividad neural en tiempo real, revelando la interacción entre
+          emociones, cognición y comportamiento durante tareas de toma de
+          decisiones.
+        </p>
+
+        <p data-start="24">
+          Comprender las bases neurales de la toma de decisiones tiene
+          implicaciones para campos que van desde la economía y el marketing
+          hasta la psicología y la política pública, informando estrategias para
+          mejorar la calidad y los resultados de las decisiones.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto64.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

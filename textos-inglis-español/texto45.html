@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Captura y almacenamiento de carbono</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto46.html" class="redirectButton">Siguiente</a>
+    <a href="texto44.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Captura y almacenamiento de carbono</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Carbon capture and storage (CCS) is a process that involves capturing
+          carbon dioxide (CO2) emissions from industrial sources or directly
+          from the atmosphere and storing it underground to prevent it from
+          entering the atmosphere.
+        </p>
+
+        <p data-start="15">
+          CCS technologies can help mitigate climate change by reducing CO2
+          emissions from power plants, industrial facilities, and other sources,
+          thereby preventing the release of greenhouse gases into the
+          atmosphere.
+        </p>
+
+        <p data-start="28">
+          The stored CO2 can be used for enhanced oil recovery or stored
+          permanently in geological formations, providing a means to reduce
+          carbon emissions and combat global warming.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La captura y almacenamiento de carbono (CAC) es un proceso que implica
+          capturar las emisiones de dióxido de carbono (CO2) de fuentes
+          industriales o directamente de la atmósfera y almacenarlas bajo tierra
+          para evitar que ingresen a la atmósfera.
+        </p>
+
+        <p data-start="15">
+          Las tecnologías de CAC pueden ayudar a mitigar el cambio climático
+          reduciendo las emisiones de CO2 de plantas de energía, instalaciones
+          industriales y otras fuentes, evitando así la liberación de gases de
+          efecto invernadero en la atmósfera.
+        </p>
+
+        <p data-start="28">
+          El CO2 almacenado se puede utilizar para la recuperación mejorada de
+          petróleo o almacenarse permanentemente en formaciones geológicas,
+          proporcionando un medio para reducir las emisiones de carbono y
+          combatir el calentamiento global.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto45.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

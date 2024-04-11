@@ -9,6 +9,172 @@
   </head>
   <body>
 
+
+    <style>
+      body {
+        background-color: azure;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .module {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%; /* Hace que los módulos sean redondos */
+        margin: 10px 20px; /* Separación horizontal y vertical */
+        float: left;
+        text-align: center; /* Centra el texto dentro del módulo */
+        text-decoration: none; /* Elimina el subrayado del enlace */
+        color: black; /* Color del texto */
+        position: relative; /* Permite posicionar el texto de manera absoluta */
+        border: 1px solid gold; /* Borde dorado */
+      }
+      .module img {
+        width: 100%;
+        height: 100%; /* Asegura que la imagen ocupe todo el espacio dentro del módulo */
+        display: block;
+        border-radius: 50%; /* Hace que la imagen sea redonda */
+      }
+      .module p {
+        position: absolute; /* Posiciona el texto absolutamente dentro del módulo */
+        bottom: -68px; /* Ajusta la posición del texto verticalmente */
+        width: 100%; /* Asegura que el texto ocupe todo el ancho del módulo */
+        margin-top: 100px;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 20px;
+      }
+
+      .last-modules {
+        margin-top: 90px;
+      }
+
+      .practica {
+        text-align: center;
+        background-color: whitesmoke;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 40px;
+        margin-top: 120px;
+        color: blue;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      /* Estilos para el botón fijo */
+      .fixed-button {
+    position: fixed;
+    top: 50%;
+    right: 10%; /* Ajusta este valor según sea necesario */
+    transform: translate(0, -50%); /* Centra verticalmente el botón */
+    z-index: 9999; /* Asegura que esté por encima de otros elementos */
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    cursor: pointer; /* Cursor al pasar por encima */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+.fixed-button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar por encima */
+}
+
+
+      .playing {
+        color: blue;
+      }
+
+      .text[lang="es"] {
+        color: red; /* Cambiar el color del texto en español a rojo */
+      }
+
+      @media (max-width: 768px) {
+        /* Estilos para dispositivos con un ancho máximo de 768px, como tablets y móviles */
+        .module {
+          width: calc(
+            33.33% - 20px
+          ); /* Calculamos el ancho de cada módulo para que haya tres en una fila */
+          margin: 34px 10px; /* Agregamos margen para separar los módulos y también un margen superior para bajarlos */
+          float: none; /* Eliminamos el float para que los módulos se apilen verticalmente */
+          text-align: center; /* Centramos el texto debajo de las imágenes */
+        }
+        .last-modules {
+          clear: both; /* Limpiamos el float para que los últimos módulos no se superpongan */
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        /* Estilos para dispositivos con un ancho máximo de 768px, como dispositivos móviles */
+        .section {
+          width: 70%; /* Ancho de la sección al 90% */
+          margin: 0 auto; /* Centra la sección horizontalmente */
+        }
+
+        .text {
+          font-size: 14px;
+        }
+
+        .pronoun {
+    font-size: 12px; /* Puedes ajustar este valor según tus necesidades */
+  }
+
+      }
+
+/* BOTON DE DESPLIEGUE*************************************************** */
+    #toggleButton {
+    position: absolute;
+    top: 225px; /* Ajusta la distancia desde arriba según lo desees */
+    left: 10px; /* Ajusta la distancia desde la izquierda según lo desees */
+    z-index: 9999; /* Para asegurar que esté por encima del contenido */
+        width: 20%;
+        height: 7%;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+        border: 1px solid red;
+
+  }
+
+#seccionAMostrar {
+    display: none; /* Para ocultar la sección por defecto */
+}
+
+/* ************************************************************************************ */
+
+/* Estilos para dispositivos móviles */
+
+#seccionAMostrar {
+    display: flex; /* Utiliza flexbox */
+    flex-wrap: wrap; /* Permite que las secciones se envuelvan en dispositivos móviles */
+}
+
+
+/* Estilos específicos para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+    #seccionAMostrar {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .module {
+        flex: 1 0 calc(40% - 20px); /* Establece que las secciones ocupen el 50% del ancho disponible con un margen de 10px */
+        margin-top : 25px; /* Añade un margen entre las secciones */
+
+    }
+}
+
+    </style>
+
+
+
+
+
+
+
+
+
+
+
    <a href="https://tempssll.github.io/Blow-713/">
       <button class="inicio">INICIO</button>
     </a>
@@ -60,8 +226,7 @@
       <a href="modulos-ingles/frases-media-abiente.html">Frases de medio ambiente</a>
       <a href="modulos-ingles/frases-cutura.html">Frases de cultura</a>
       <a href="modulos-ingles/frases-derechos-humanos.html">Frases de derechos humanos</a>
-      <a href="modulos-ingles/frases-innovacion.html">Frases de innovación</a>
-
+      <a href="modulos-ingles/frases-innovacion.html">Frases de innovación</a>    
      
     </div>
   </div>
@@ -106,22 +271,158 @@
 
     </div>
   </div>
-</div>
+
+
+  
 
 
 
-<h3>Nota:
-  Si estás utilizando un teléfono móvil, gira la pantalla horizontalmente.
-  </h3>
+  <div class="category-dropdown">
+    <button class="dropbtn">Textos</button>
+    <div class="dropdown-content">
 
-
-
-  <button id="playButton" class="fixed-button play"><i class="fas fa-play"></i> Reproducir Todos</button>
+      <a href="textos-inglis-español/ensayoaudio.html">Tecnología</a>
+    <a href="textos-inglis-español/texto2.html">Inteligencia Artificial</a>
+    <a href="textos-inglis-español/texto3.html">Sistemas Informáticos</a>
+    <a href="textos-inglis-español/texto4.html">Sistemas Informáticos</a>
+    <a href="textos-inglis-español/texto5.html">Sistemas Informáticos</a>
+    <a href="textos-inglis-español/texto6.html">Desarrollo de Software</a>
+    <a href="textos-inglis-español/texto7.html">Lenguajes de Programación</a>
+    <a href="textos-inglis-español/texto8.html">Redes de Computadoras</a>
+    <a href="textos-inglis-español/texto9.html">Ciberseguridad</a>
+    <a href="textos-inglis-español/texto10.html">Big Data</a>
+    <a href="textos-inglis-español/texto11.html">Internet de las Cosas</a>
+    <a href="textos-inglis-español/texto12.html">Realidad Virtual</a>
+    <a href="textos-inglis-español/texto13.html">Computación en la Nube</a>
+    <a href="textos-inglis-español/texto14.html">Automatización </a>
+    <a href="textos-inglis-español/texto15.html">Computación Cuántica</a>
+    <a href="textos-inglis-español/texto16.html">Computación Biométrica</a>
+    <a href="textos-inglis-español/texto17.html">Realidad Mixta</a>
+    <a href="textos-inglis-español/texto18.html">Computación Gráfica</a>
+    <a href="textos-inglis-español/texto19.html">Sistemas Operativos</a>
+    <a href="textos-inglis-español/texto20.html">Aplicaciones Móviles</a>
+    <a href="textos-inglis-español/texto21.html">Minería de Datos</a>
+    <a href="textos-inglis-español/texto22.html">Arquitectura de Software</a>
+    <a href="textos-inglis-español/texto23.html">Computación Distribuida</a>
+    <a href="textos-inglis-español/texto24.html">Análisis Predictivo</a>
+    <a href="textos-inglis-español/texto25.html">Gestión del Ciclo</a>
+    <a href="textos-inglis-español/texto26.html">Programación Concurrente</a>
+    <a href="textos-inglis-español/texto27.html">El reflejo del sol en el agua</a>
+    <a href="textos-inglis-español/texto28.html">Un viaje</a>
+    <a href="textos-inglis-español/texto29.html">La danza de las estrellas</a>
+    <a href="textos-inglis-español/texto30.html">El resplandor</a>
+    <a href="textos-inglis-español/texto31.html">El destello</a>
+    <a href="textos-inglis-español/texto32.html">La belleza de las nebulosas</a>
+    <!-- sigue... ''''''''''''-->
+    <a href="textos-inglis-español/texto33.html">Los planetas perdidos</a>
+    <a href="textos-inglis-español/texto34.html">Las constelaciones</a>
+    <a href="textos-inglis-español/texto35.html">La búsqueda de vida extraterrestre</a>
+    <a href="textos-inglis-español/texto36.html">La historia de nuestro universo</a>
+    <a href="textos-inglis-español/texto37.html">Energía solar fotovoltaica</a>
+    <a href="textos-inglis-español/texto38.html">Energía eólica marina</a>
+    <a href="textos-inglis-español/texto39.html">Eficiencia energética</a>
+    <a href="textos-inglis-español/texto40.html">Vehículos eléctricos</a>
+    <a href="textos-inglis-español/texto41.html">Biomasa como fuente</a>
+    <a href="textos-inglis-español/texto42.html">Geotermia para calefacción</a>
+    <a href="textos-inglis-español/texto43.html">Redes inteligentes</a>
+    <a href="textos-inglis-español/texto44.html">Edificios de consumo</a>
+    <a href="textos-inglis-español/texto45.html">Captura y almacenamiento</a>
+    <a href="textos-inglis-español/texto46.html">Hidrógeno verde</a>
+    <a href="textos-inglis-español/texto47.html">Agricultura regenerativa </a>
+    <a href="textos-inglis-español/texto48.html">Energía mareomotriz</a>
+    <a href="textos-inglis-español/texto49.html">Desarrollo de baterías</a>
+    <a href="textos-inglis-español/texto50.html">Eficiencia energética</a>
+    <a href="textos-inglis-español/texto51.html">Electrificación de sistemas</a>
+    <a href="textos-inglis-español/texto52.html">Energía nuclear avanzada y segura</a>
+    <a href="textos-inglis-español/texto53.html">Tecnologías de captura directa</a>
+    <a href="textos-inglis-español/texto54.html">Planificación urbana </a>
+    <a href="textos-inglis-español/texto55.html">Educación ambiental</a>
+    <a href="textos-inglis-español/texto56.html">Inteligencia Artificial </a>
+    <a href="textos-inglis-español/texto57.html">Desafíos de la globalización</a>
+    <a href="textos-inglis-español/texto58.html">Innovaciones en la industria</a>
+    <a href="textos-inglis-español/texto59.html">Arquitectura sostenible</a>
+    <a href="textos-inglis-español/texto60.html">Impacto ambiental</a>
+    <a href="textos-inglis-español/texto61.html">Avances en la realidad</a>
+    <a href="textos-inglis-español/texto62.html">Ética en la ingeniería</a>
+    <a href="textos-inglis-español/texto63.html">El futuro de las ciudades</a>
+    <a href="textos-inglis-español/texto64.html">Neurociencia</a>
+    <a href="textos-inglis-español/texto65.html">Cine como reflejo</a>
+    <a href="textos-inglis-español/texto66.html">El auge de la economía</a>
+    <a href="textos-inglis-español/texto67.html">Fotografía documental</a>
+    <a href="textos-inglis-español/texto68.html">Filantropía y responsabilidad</a>
+    <a href="textos-inglis-español/texto69.html">Psicología</a>
+    <a href="textos-inglis-español/texto70.html">Literatura latinoamericana</a>
+    <a href="textos-inglis-español/texto71.html">Arqueología subacuática</a>
+    <a href="textos-inglis-español/texto72.html">Música electrónica</a>
+    <a href="textos-inglis-español/texto73.html">Cambio demográfico</a>
+    <a href="textos-inglis-español/texto74.html">Desigualdad de ingresos</a>
+    <a href="textos-inglis-español/texto75.html">Discriminación racial</a>
+    <a href="textos-inglis-español/texto76.html">Acceso desigual</a>
+    <a href="textos-inglis-español/texto77.html">Discriminación</a>
+    <a href="textos-inglis-español/texto78.html">Desigualdad en el acceso</a>
+    <a href="textos-inglis-español/texto79.html">Desigualdad en el acceso a la tecnología</a>
+    <a href="textos-inglis-español/texto80.html">Brecha digital</a>
+    <a href="textos-inglis-español/texto81.html">Discriminación</a>
+    <a href="textos-inglis-español/texto82.html">Desigualdad en el acceso</a>
+    <a href="textos-inglis-español/texto83.html">Desigualdad en la </a>
+    <a href="textos-inglis-español/texto84.html">Desigualdad en el acceso</a>
+    <a href="textos-inglis-español/texto85.html">Exclusión social </a>
+    <a href="textos-inglis-español/texto86.html">Desigualdad en el acceso</a>
+    <a href="textos-inglis-español/texto87.html">Discriminación en</a>
+    <a href="textos-inglis-español/texto88.html">Desigualdad en el </a>
+    <a href="textos-inglis-español/texto89.html">Brecha educativa</a>
+    <a href="textos-inglis-español/texto90.html">Exclusión social</a>
+    <a href="textos-inglis-español/texto91.html"> Desigualdad en el acceso</a>
+    <a href="textos-inglis-español/texto92.html">Discriminación en el</a>
+    <a href="textos-inglis-español/texto93.html">Desigualdad en la participación</a>
+    <a href="textos-inglis-español/texto94.html"> Exclusión social de personas</a>
+    <a href="textos-inglis-español/texto95.html">Brecha de acceso</a>
+    <a href="textos-inglis-español/texto96.html">Desigualdad en el </a>
+    <a href="textos-inglis-español/texto97.html">Desigualdad en el acceso</a>
+    <a href="textos-inglis-español/texto98.html"> Exclusión social</a>
+    <a href="textos-inglis-español/texto99.html">Textos 99</a>
+    <a href="textos-inglis-español/texto100.html">Textos 100</a>
+    
+    </div>
+  </div>
 
 
 
   
 
+  <div class="category-dropdown">
+    <button class="dropbtn">Traductor</button>
+    <div class="dropdown-content">
+      <a href="traductor/index.html">Traductor</a>
+    </div>
+  </div>
+
+
+  
+
+  <div class="category-dropdown">
+    <button class="dropbtn">Modulos</button>
+    <div class="dropdown-content">
+      <a href="modulos/index.html">Modulos</a>
+    
+  
+    </div>
+  </div>
+  
+  
+
+
+
+
+
+
+
+
+</div>
+
+<!-- Mas******************* -->
+
+  <button id="playButton" class="fixed-button play"><i class="fas fa-play"></i> Reproducir Todos</button>
 
     <div class="section">
       <h2 id="pronombres">Pronombres Personales:</h2>
@@ -136,8 +437,6 @@
             Tu navegador no soporta el elemento de audio.
           </audio>
         </li>
-        
-
         
 
         <li class="pronoun">

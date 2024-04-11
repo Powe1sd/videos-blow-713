@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eficiencia energética en iluminación pública</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto51.html" class="redirectButton">Siguiente</a>
+    <a href="texto47.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Eficiencia energética en iluminación pública</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Efficiency in public lighting is essential for reducing energy
+          consumption and minimizing light pollution, leading to cost savings
+          and environmental benefits.
+        </p>
+
+        <p data-start="9">
+          LED technology, coupled with smart lighting systems, allows for
+          precise control and optimization of light levels, enhancing safety and
+          comfort while reducing energy waste.
+        </p>
+
+        <p data-start="20">
+          By implementing energy-efficient lighting solutions in public spaces,
+          cities can create more sustainable and livable environments for
+          residents and visitors alike.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La eficiencia en la iluminación pública es esencial para reducir el
+          consumo de energía y minimizar la contaminación lumínica, lo que
+          conduce a ahorros económicos y beneficios ambientales.
+        </p>
+
+        <p data-start="9">
+          La tecnología LED, junto con los sistemas de iluminación inteligente,
+          permite un control preciso y una optimización de los niveles de luz,
+          mejorando la seguridad y el confort al tiempo que se reduce el
+          desperdicio de energía.
+        </p>
+
+        <p data-start="20">
+          Al implementar soluciones de iluminación energéticamente eficientes en
+          espacios públicos, las ciudades pueden crear entornos más sostenibles
+          y habitables tanto para los residentes como para los visitantes.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto50.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

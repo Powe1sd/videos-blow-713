@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Impacto ambiental del turismo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto61.html" class="redirectButton">Siguiente</a>
+    <a href="texto59.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Impacto ambiental del turismo</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Tourism can have both positive and negative impacts on the
+          environment. Sustainable tourism practices aim to minimize negative
+          impacts while maximizing benefits for local communities and
+          ecosystems.
+        </p>
+
+        <p data-start="12">
+          Common environmental impacts of tourism include habitat destruction,
+          pollution, and overuse of natural resources such as water and energy.
+        </p>
+
+        <p data-start="21">
+          By promoting eco-friendly travel behaviors and supporting conservation
+          initiatives, tourists can help mitigate the environmental impact of
+          their journeys and contribute to the preservation of natural
+          landscapes and biodiversity.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          El turismo puede tener tanto impactos positivos como negativos en el
+          medio ambiente. Las prácticas de turismo sostenible buscan minimizar
+          los impactos negativos mientras se maximizan los beneficios para las
+          comunidades locales y los ecosistemas.
+        </p>
+
+        <p data-start="12">
+          Los impactos ambientales comunes del turismo incluyen la destrucción
+          del hábitat, la contaminación y el uso excesivo de recursos naturales
+          como el agua y la energía.
+        </p>
+
+        <p data-start="21">
+          Al promover comportamientos de viaje respetuosos con el medio ambiente
+          y apoyar iniciativas de conservación, los turistas pueden ayudar a
+          mitigar el impacto ambiental de sus viajes y contribuir a la
+          preservación de paisajes naturales y biodiversidad.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto60.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

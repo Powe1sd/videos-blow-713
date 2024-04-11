@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La historia de nuestro universo en la luz de las estrellas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto37.html" class="redirectButton">Siguiente</a>
+    <a href="texto35.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">
+      La historia de nuestro universo en la luz de las estrellas
+    </h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          The story of our universe unfolds in the light of the stars, each
+          twinkling point in the night sky holding clues to its vast and
+          mysterious history.
+        </p>
+
+        <p data-start="8">
+          From the birth of galaxies to the formation of planets and the rise of
+          life, stars serve as celestial storytellers, illuminating the cosmic
+          narrative that stretches across billions of years.
+        </p>
+
+        <p data-start="20">
+          Through the lens of astronomy, we glimpse into the past and witness
+          the ongoing saga of creation and evolution that continues to shape the
+          universe we inhabit.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La historia de nuestro universo se desarrolla en la luz de las
+          estrellas, cada punto centelleante en el cielo nocturno guardando
+          pistas de su historia vasta y misteriosa.
+        </p>
+
+        <p data-start="8">
+          Desde el nacimiento de las galaxias hasta la formación de planetas y
+          el surgimiento de la vida, las estrellas sirven como narradoras
+          celestiales, iluminando la narrativa cósmica que se extiende a lo
+          largo de miles de millones de años.
+        </p>
+
+        <p data-start="20">
+          A través del lente de la astronomía, vislumbramos el pasado y
+          presenciamos la continua saga de creación y evolución que continúa
+          moldeando el universo que habitamos.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto36.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brecha digital entre zonas urbanas y rurales</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto81.html" class="redirectButton">Siguiente</a>
+    <a href="texto79.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Brecha digital entre zonas urbanas y rurales</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          The digital divide between urban and rural areas persists as a
+          significant challenge, with disparities in access to high-speed
+          internet, technological resources, and digital literacy skills.
+        </p>
+
+        <p data-start="11">
+          Residents of rural communities often face limited connectivity,
+          hindering their ability to access online education, telemedicine
+          services, and employment opportunities available to their urban
+          counterparts.
+        </p>
+
+        <p data-start="24">
+          Bridging the digital gap requires investment in broadband
+          infrastructure, community technology centers, and initiatives to
+          promote digital inclusion and skills development in rural regions.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La brecha digital entre áreas urbanas y rurales persiste como un
+          desafío significativo, con disparidades en el acceso a internet de
+          alta velocidad, recursos tecnológicos y habilidades de alfabetización
+          digital.
+        </p>
+
+        <p data-start="11">
+          Los residentes de comunidades rurales a menudo enfrentan una
+          conectividad limitada, lo que dificulta su capacidad para acceder a la
+          educación en línea, los servicios de telemedicina y las oportunidades
+          laborales disponibles para sus contrapartes urbanas.
+        </p>
+
+        <p data-start="24">
+          Reducir la brecha digital requiere inversión en infraestructura de
+          banda ancha, centros tecnológicos comunitarios e iniciativas para
+          promover la inclusión digital y el desarrollo de habilidades en
+          regiones rurales.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto80.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

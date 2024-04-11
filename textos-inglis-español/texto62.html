@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ética en la ingeniería genética</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="texto63.html" class="redirectButton">Siguiente</a>
+    <a href="texto61.html" class="goBackButton">Retroceder</a>
+
+    <a href="../Inglish-free.html">
+      <button class="inicio">INICIO</button>
+    </a>
+
+    <h1 class="tecnologia">Ética en la ingeniería genética</h1>
+
+    <div id="textContainer">
+      <div class="paragraph-container" id="englishText">
+        <h2 class="inglish">English</h2>
+        <p data-start="0">
+          Ethics in genetic engineering involves considerations of moral
+          principles and values in the manipulation of genetic material,
+          including issues related to consent, privacy, and equity.
+        </p>
+
+        <p data-start="11">
+          Key ethical concerns in genetic engineering include the potential for
+          unintended consequences, such as genetic discrimination and
+          exacerbating existing social inequalities.
+        </p>
+
+        <p data-start="21">
+          Ethical frameworks and guidelines aim to ensure responsible practices
+          in genetic engineering research and application, balancing innovation
+          with the protection of human rights and the environment.
+        </p>
+      </div>
+
+      <div class="paragraph-container" id="spanishText">
+        <h2 class="español">Español</h2>
+        <p data-start="0">
+          La ética en la ingeniería genética implica consideraciones de
+          principios morales y valores en la manipulación del material genético,
+          incluyendo cuestiones relacionadas con el consentimiento, la
+          privacidad y la equidad.
+        </p>
+
+        <p data-start="11">
+          Las principales preocupaciones éticas en la ingeniería genética
+          incluyen el potencial de consecuencias no deseadas, como la
+          discriminación genética y la exacerbación de las desigualdades
+          sociales existentes.
+        </p>
+
+        <p data-start="21">
+          Los marcos éticos y las pautas buscan garantizar prácticas
+          responsables en la investigación y aplicación de la ingeniería
+          genética, equilibrando la innovación con la protección de los derechos
+          humanos y el medio ambiente.
+        </p>
+      </div>
+    </div>
+
+    <div id="audioContainer">
+      <audio id="audio" controls>
+        <source src="audios/texto62.wav" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+
+    <script>
+      const textContainer = document.getElementById("textContainer");
+      const audio = document.getElementById("audio");
+      const englishParagraphs = document.querySelectorAll("#englishText p");
+      const spanishParagraphs = document.querySelectorAll("#spanishText p");
+
+      audio.addEventListener("timeupdate", function () {
+        let currentTime = audio.currentTime;
+
+        // Iterar a través de cada línea de texto en inglés
+        englishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < englishParagraphs.length
+              ? englishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en inglés
+            line.classList.add("highlight-english");
+          } else {
+            line.classList.remove("highlight-english");
+          }
+        });
+
+        // Iterar a través de cada línea de texto en español
+        spanishParagraphs.forEach((line, index) => {
+          let startTime = parseFloat(line.getAttribute("data-start"));
+          let endTime = parseFloat(
+            index + 1 < spanishParagraphs.length
+              ? spanishParagraphs[index + 1].getAttribute("data-start")
+              : audio.duration
+          );
+
+          // Comprobar si el tiempo actual está dentro del rango de esta línea
+          if (currentTime >= startTime && currentTime < endTime) {
+            // Resaltar la línea actual en español
+            line.classList.add("highlight-spanish");
+          } else {
+            line.classList.remove("highlight-spanish");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
