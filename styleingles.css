@@ -220,6 +220,14 @@ video {
   font-size: 30px;
 }
 
+.corner-text2 {
+  position: fixed;
+  color: red;
+  bottom: 20px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 50px;
+}
+
 .section {
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
