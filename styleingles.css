@@ -339,12 +339,29 @@ p {
   position: fixed; /* Fijar la posición */
   top: 0; /* Posición superior */
   left: 0; /* Posición izquierda */
-  background-color: black; /* Color de fondo */
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: white; /* Color de texto */
   width: 100%; /* Ancho al 100% */
-  padding: 10px 0; /* Espaciado interno */
-  z-index: 999; /* Índice z para asegurar que esté por encima de otros elementos */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
-  border-bottom: 1px solid white;
+  padding: 20px 0; /* Espaciado interno aumentado */
+  z-index: 999; /* Asegura que esté por encima de otros elementos */
+  font-size: 20px; /* Aumentar el tamaño de la fuente */
+  letter-spacing: 1px; /* Espaciado entre letras */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), 0 6px 20px rgba(0, 0, 0, 0.15); /* Sombra 3D */
+  border-bottom: 2px solid whitesmoke; /* Borde sutil */
+  transform: translateY(0); /* Inicialmente en su lugar */
+  transition: all 0.3s ease-out; /* Transición suave para todos los cambios */
+}
+
+.category-section:hover {
+  background-color: whitesmoke; /* Fondo ligeramente más claro al hacer hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), 0 12px 30px rgba(0, 0, 0, 0.25); /* Sombra más intensa para efecto 3D */
+  transform: translateY(-5px) scale(1.05); /* Elevación con escala para efecto de profundidad */
+}
+
+.category-section:active {
+  background-color: #2980b9; /* Fondo aún más oscuro al hacer clic */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3), 0 8px 25px rgba(0, 0, 0, 0.2); /* Sombra para clic */
+  transform: translateY(1px) scale(1); /* Reducción de escala al presionar */
 }
 
 .category-dropdown {
@@ -353,12 +370,13 @@ p {
 }
 
 .dropbtn {
-  background-color: blue;
-  color: white;
+  background-color: white;
+  color: black;
   padding: 10px;
-  font-size: 16px;
+  font-size: 13px;
   border: none;
   cursor: pointer;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .dropbtn2 {
@@ -392,7 +410,7 @@ p {
 }
 
 .dropdown-content a:hover {
-  background-color: blue;
+  background-color: red;
 }
 
 .category-dropdown:hover .dropdown-content {
@@ -446,7 +464,7 @@ p {
   right: 30px;
   z-index: 9999;
   /*Aseguraqueestéporencimadeotroselementos*/
-  background-color: #007bff;
+  background-color: red;
   /*Colordefondo*/
   color: white;
   /*Colordeltexto*/
@@ -466,7 +484,7 @@ p {
 }
 
 .fixed-button:hover {
-  background-color: #0056b3; /* Color de fondo al pasar por encima */
+  background-color: red; /* Color de fondo al pasar por encima */
 }
 
 .fixed-button {
@@ -476,5 +494,5 @@ p {
 }
 
 .playing {
-  color: blue;
+  color: red;
 }
