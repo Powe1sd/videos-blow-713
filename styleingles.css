@@ -215,9 +215,9 @@ video {
   right: 0;
   background-color: transparent; /* Fondo transparente */
   color: red; /* Color de texto rojo */
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  font-size: 30px;
+  padding: 16px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
 }
 
 .corner-text2 {
@@ -225,7 +225,7 @@ video {
   color: red;
   bottom: 20px;
   font-family: "Times New Roman", Times, serif;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .section {
@@ -248,7 +248,7 @@ video {
 }
 
 h2 {
-  color: #3498db;
+  color: blue;
   border-bottom: 2px solid #3498db;
   padding-bottom: 5px;
 }
