@@ -464,7 +464,7 @@ p {
   right: 30px;
   z-index: 9999;
   /*Aseguraqueestéporencimadeotroselementos*/
-  background-color: red;
+  background-color: yellow;
   /*Colordefondo*/
   color: white;
   /*Colordeltexto*/
@@ -484,7 +484,7 @@ p {
 }
 
 .fixed-button:hover {
-  background-color: red; /* Color de fondo al pasar por encima */
+  background-color: yellow; /* Color de fondo al pasar por encima */
 }
 
 .fixed-button {
@@ -494,5 +494,5 @@ p {
 }
 
 .playing {
-  color: red;
+  color: yellow;
 }
