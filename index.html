@@ -3486,221 +3486,185 @@ a{color:#e6c982}.divider{opacity:.25}.pronoun.is-speaking{border-color:rgba(53,2
 <script id="stable-audio-playback-2026">
 (() => {
   'use strict';
-  const master = document.getElementById('playButton');
-  const audios = [...document.querySelectorAll('audio')];
-  if (!master || !audios.length) return;
 
-  let mode = 'idle'; // idle | playing | paused
-  let index = 0;
-  let current = null;
-  let token = 0;
+  const masterBtn = document.getElementById('playButton');
+  const audioElements = [...document.querySelectorAll('audio')];
+  if (!masterBtn || !audioElements.length) return;
 
-  const label = {
-    idle: '▶ Reproducir todos',
+  // ===== 1. Añadir playsinline a todos (muy importante en iOS) =====
+  audioElements.forEach(a => {
+    a.setAttribute('playsinline', '');
+    a.setAttribute('webkit-playsinline', '');
+    // Evitamos que el navegador cargue todos de golpe
+    if (!a.hasAttribute('preload')) a.preload = 'none';
+  });
+
+  // ===== 2. Reproductor maestro (solo 1 instancia) =====
+  const player = new Audio();
+  player.preload = 'auto';
+  player.setAttribute('playsinline', '');
+  player.setAttribute('webkit-playsinline', '');
+
+  // Lista de pistas (src + elemento original para resaltar)
+  const tracks = audioElements.map((el, i) => ({
+    src: el.currentSrc || el.querySelector('source')?.src || el.src,
+    element: el,
+    index: i
+  })).filter(t => t.src);
+
+  let mode = 'idle';          // idle | playing | paused
+  let currentIndex = 0;
+  let token = 0;              // para cancelar cadenas viejas
+
+  const labels = {
+    idle:    '▶ Reproducir todos',
     playing: 'Ⅱ Pausar reproducción',
-    paused: '▶ Continuar reproducción'
+    paused:  '▶ Continuar reproducción'
   };
 
-  function paint() {
-    master.textContent = label[mode];
-    master.setAttribute('aria-label', label[mode]);
-    master.setAttribute('aria-pressed', String(mode === 'playing'));
+  function updateButton() {
+    masterBtn.textContent = labels[mode];
+    masterBtn.setAttribute('aria-label', labels[mode]);
+    masterBtn.setAttribute('aria-pressed', String(mode === 'playing'));
   }
 
-  function clear(a) {
-    const item = a?.closest('.pronoun');
-    if (!item) return;
-    item.classList.remove('is-speaking');
-    item.querySelectorAll('.eng-highlight').forEach(el => {
-      el.classList.remove('eng-highlight');
+  function clearHighlight() {
+    document.querySelectorAll('.pronoun.is-speaking').forEach(el => {
+      el.classList.remove('is-speaking');
+      el.querySelectorAll('.eng-highlight').forEach(span => span.classList.remove('eng-highlight'));
     });
   }
 
-  function mark(a) {
-    audios.forEach(clear);
-    const item = a?.closest('.pronoun');
+  function highlight(track) {
+    clearHighlight();
+    if (!track) return;
+
+    const item = track.element.closest('.pronoun');
     if (!item) return;
+
     item.classList.add('is-speaking');
 
-    // Resaltar el texto en rojo (inglés) manteniendo el verde del contenedor
-    item.querySelectorAll('span[style*="color: red"], span[style*="color:red"], span[style*="color: #"], .text[lang="es"]').forEach(el => {
-      // Solo si parece inglés o es el span rojo típico
-      el.classList.add('eng-highlight');
-    });
-    // También resaltar spans rojos dentro de .text
-    item.querySelectorAll('.text span[style*="red"], span[style*="red"]').forEach(el => {
+    // Resaltar el texto en rojo (inglés)
+    item.querySelectorAll('span[style*="color: red"], span[style*="color:red"], .text span[style*="red"]').forEach(el => {
       el.classList.add('eng-highlight');
     });
 
-    // Scroll automático suave hacia el elemento que se está reproduciendo
+    // Scroll suave (solo si el elemento no está ya visible)
     try {
-      item.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'nearest'
-      });
-    } catch (e) {
-      item.scrollIntoView(true);
-    }
+      const rect = item.getBoundingClientRect();
+      const isVisible = rect.top >= 80 && rect.bottom <= window.innerHeight - 80;
+      if (!isVisible) {
+        item.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+      }
+    } catch (e) {}
   }
 
-  function stopOthers(keep) {
-    audios.forEach(a => {
-      if (a !== keep && !a.paused) a.pause();
+  function playTrack(index, myToken) {
+    if (myToken !== token || mode !== 'playing') return;
+    if (index >= tracks.length) {
+      finish();
+      return;
+    }
+
+    currentIndex = index;
+    const track = tracks[index];
+
+    // Pausamos cualquier audio individual que esté sonando
+    audioElements.forEach(a => {
+      if (!a.paused) a.pause();
     });
+
+    player.src = track.src;
+    player.currentTime = 0;
+    highlight(track);
+
+    const p = player.play();
+    if (p && typeof p.catch === 'function') {
+      p.catch(err => {
+        if (myToken !== token || mode !== 'playing') return;
+        // Si falla (archivo roto, NotAllowedError, etc.) → saltamos al siguiente
+        console.warn('Audio falló, saltando:', track.src, err);
+        setTimeout(() => playTrack(index + 1, myToken), 120);
+      });
+    }
   }
 
   function finish() {
     mode = 'idle';
-    current = null;
-    index = 0;
+    currentIndex = 0;
     token++;
-    audios.forEach(clear);
-    paint();
+    clearHighlight();
+    player.pause();
+    player.removeAttribute('src');
+    player.load();
+    updateButton();
   }
 
-  function playAudio(a, myToken) {
-    if (myToken !== token || mode !== 'playing') return;
-    current = a;
-    stopOthers(a);
-    a.preload = 'auto';
-    mark(a);
-
-    const promise = a.play();
-    if (promise && typeof promise.catch === 'function') {
-      promise.catch(err => {
-        if (myToken !== token || mode !== 'playing') return;
-        if (err?.name === 'AbortError') return;
-        skip(a, myToken);
-      });
-    }
-  }
-
-  function next(myToken) {
-    if (myToken !== token || mode !== 'playing') return;
-    if (index >= audios.length) {
-      finish();
-      return;
-    }
-    playAudio(audios[index], myToken);
-  }
-
-  function skip(a, myToken) {
-    if (myToken !== token || mode !== 'playing' || a !== current) return;
-    clear(a);
-    index++;
-    current = null;
-    next(myToken);
-  }
-
-  // Eventos de cada audio
-  audios.forEach((a, i) => {
-    a.addEventListener('play', () => {
-      stopOthers(a);
-      mark(a);
-    });
-
-    a.addEventListener('playing', () => {
-      mark(a);
-    });
-
-    a.addEventListener('ended', () => {
-      clear(a);
-      if (mode === 'playing' && a === current && i === index) {
-        index++;
-        current = null;
-        next(token);
-      } else if (current === a && mode !== 'playing') {
-        current = null;
-      }
-    });
-
-    a.addEventListener('error', () => {
-      clear(a);
-      if (mode === 'playing' && a === current) skip(a, token);
-    });
-
-    a.addEventListener('pause', () => {
-      // No quitamos el resaltado si estamos en modo paused (lista pausada)
-      if (mode !== 'paused') clear(a);
-    });
+  // ===== Eventos del reproductor maestro =====
+  player.addEventListener('ended', () => {
+    if (mode !== 'playing') return;
+    // Pequeño delay ayuda mucho en móviles
+    setTimeout(() => {
+      if (mode === 'playing') playTrack(currentIndex + 1, token);
+    }, 80);
   });
 
-  // Botón principal
-  master.type = 'button';
-  master.addEventListener('click', () => {
-    // PAUSAR
+  player.addEventListener('error', () => {
+    if (mode === 'playing') {
+      setTimeout(() => playTrack(currentIndex + 1, token), 120);
+    }
+  });
+
+  // ===== Botón principal =====
+  masterBtn.type = 'button';
+  masterBtn.addEventListener('click', () => {
+
+    // --- PAUSAR ---
     if (mode === 'playing') {
       mode = 'paused';
-      if (current) {
-        current.pause();
-        mark(current); // mantener verde + texto rojo resaltado
-      }
-      paint();
+      player.pause();
+      updateButton();
       return;
     }
 
-    // REANUDAR
+    // --- REANUDAR ---
     if (mode === 'paused') {
       mode = 'playing';
-      paint();
-
-      if (current && !current.ended) {
-        const realIndex = audios.indexOf(current);
-        if (realIndex !== -1) index = realIndex;
-        stopOthers(current);
-        mark(current);
-        const t = token;
-        const p = current.play();
-        if (p && typeof p.catch === 'function') {
-          p.catch(e => {
-            if (t !== token || mode !== 'playing') return;
-            if (e?.name === 'AbortError') return;
-            skip(current, t);
-          });
-        }
-        return;
-      }
-
-      // El actual ya terminó → siguiente
-      if (current) {
-        clear(current);
-        index = audios.indexOf(current) + 1;
-        current = null;
-      }
-      next(token);
+      updateButton();
+      const p = player.play();
+      if (p) p.catch(() => playTrack(currentIndex, token)); // si falla, reintentamos
       return;
     }
 
-    // EMPEZAR DESDE EL PRINCIPIO
+    // --- EMPEZAR DESDE EL PRINCIPIO ---
     token++;
     mode = 'playing';
-    index = 0;
-    current = null;
-    audios.forEach(a => {
-      a.pause();
-      try { a.currentTime = 0; } catch (e) {}
-      clear(a);
-    });
-    paint();
-    next(token);
+    currentIndex = 0;
+    clearHighlight();
+    updateButton();
+    playTrack(0, token);
   });
 
-  // Si el usuario reproduce un audio individual, cancela la lista
-  audios.forEach(a => {
+  // Si el usuario reproduce un audio individual → cancelamos la lista
+  audioElements.forEach(a => {
     a.addEventListener('play', () => {
-      if (mode === 'playing' && a !== current) {
+      if (mode === 'playing' || mode === 'paused') {
         token++;
         mode = 'idle';
-        current = a;
-        index = 0;
-        paint();
+        player.pause();
+        clearHighlight();
+        updateButton();
       }
     });
   });
 
-  paint();
-  window.addEventListener('pagehide', () => audios.forEach(a => a.pause()));
+  // Al salir de la página
+  window.addEventListener('pagehide', () => {
+    player.pause();
+    audioElements.forEach(a => a.pause());
+  });
+
+  updateButton();
 })();
 </script>
 
