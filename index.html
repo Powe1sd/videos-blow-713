@@ -232,7 +232,7 @@ footer.contacto {
       <a href="modulos-ingles/saludosbasicos.html">Saludos basicos</a>
       <a href="modulos-ingles/frases.presentacion.html">Frases de Presentación:</a>
       <a href="modulos-ingles/preguntasbasicas.html">Preguntas básicas</a>
-      <a href="modulos-ingles/respuestascencilas.html">Respuestas Sencillas:</a>
+      <a href="modulos-ingles/respuestascencilas.html">Respuestas sencillas:</a>
       <a href="modulos-ingles/presentesimple.html">Presente Simple - Verbos Básicos:</a>
       <a href="modulos-ingles/expresioescotidianas.html">Expresiones Cotidianas:</a>
       <a href="modulos-ingles/despedidas.html">Despedidas:</a>
@@ -403,9 +403,9 @@ footer.contacto {
 
 
   <div class="category-dropdown">
-    <button class="dropbtn">Modulos</button>
+    <button class="dropbtn">Módulos</button>
     <div class="dropdown-content">
-      <a href="modulos/index.html">Modulos</a>
+      <a href="modulos/index.html">Módulos</a>
     </div>
   </div>
   
@@ -426,7 +426,7 @@ footer.contacto {
   </div>
 </div>
 
-<!-- Mas******************* -->
+<!-- Más******************* -->
   <button id="playButton" class="fixed-button play"><i class="fas fa-play"></i> Reproducir Todos</button>
 
     <div class="section">
@@ -626,7 +626,7 @@ footer.contacto {
       <div class="section">
 
 <!-- *************************************************************************************************************************** -->
-<!-- Codigo secreto -->
+<!-- Código secreto -->
 <!-- *************************************************************************************************************************** -->
 
 
@@ -635,7 +635,7 @@ footer.contacto {
 
 
         <!-- Frases de texto **************************************************** -->
-        <h2 id="preguntas">Preguntas Básicas:</h2>
+        <h2 id="preguntas">Preguntas básicas:</h2>
         <!-- Frases de texto **************************************************** -->
 
         <ul>
@@ -675,7 +675,7 @@ footer.contacto {
 
 
         <!-- Frases de texto **************************************************** -->
-        <h2 id="respuestas">Respuestas Sencillas:</h2>
+        <h2 id="respuestas">Respuestas sencillas:</h2>
         <!-- Frases de texto **************************************************** -->
 
         <ul>
@@ -3503,7 +3503,7 @@ Have you ever marveled at the elegance of mathematical proofs? (<span style="col
       <button id="nextBtn">Siguiente</button>
       <button id="validateBtn" style="display:none;">Validar Respuestas</button>
       <button id="downloadBtn" style="display:none;">Descargar Respuestas</button>
-    </div>      
+    </div>
 
     <footer class="contacto">
     <div class="contacto-contenedor">
@@ -3511,12 +3511,12 @@ Have you ever marveled at the elegance of mathematical proofs? (<span style="col
         <p>Si tienes alguna duda o deseas más información, puedes comunicarte conmigo: brayan324554@gmail.com</p>
 
         <ul class="contacto-lista">
-            <li><strong>Sofware libre</strong></li>
-            <li><strong>Si tienes alguna duda o deseas más información, puedes comunicarte conmigo: </strong>Sofware libre</li>
+            <li><strong>Software libre</strong></li>
+            <li><strong>Si tienes alguna duda o deseas más información, puedes comunicarte conmigo: </strong>Software libre</li>
            
         </ul>
 
-        <p class="copy">© 2025 Plataforma realizada por Brayhan Estiven Coy Rubio — Todos los derechos reservados</p>
+        <p class="copy">© 2026 Plataforma realizada por Brayhan Estiven Coy Rubio — Todos los derechos reservados</p>
     </div>
 </footer>
 
@@ -3533,7 +3533,7 @@ Have you ever marveled at the elegance of mathematical proofs? (<span style="col
            
 
 <!-- FIN DE CODIGO SCRIPT Y DEMAS ELEMENTOS*************************************************************************************** -->
-<script src="questioninglis.js"></script>
+
 
 <style id="redisen-premium-2026">
 
@@ -3658,212 +3658,60 @@ footer.contacto{box-sizing:border-box;width:min(1120px,100%);margin:38px auto 0!
 
 </style>
 
-<script id="audio-controls-repair-2026-v3">
-(() => {
-  'use strict';
 
-  const master = document.getElementById('playButton');
-  const audios = Array.from(document.querySelectorAll('audio'));
-  if (!master || !audios.length) return;
-
-  let playlistActive = false;
-  let playlistPaused = false;
-  let currentIndex = 0;
-  let runToken = 0;
-  let activeAudio = null;
-  let advancing = false;
-
-  function showState(state) {
-    const labels = {
-      ready: '<i class="fas fa-play" aria-hidden="true"></i> Reproducir Todos',
-      playing: '<i class="fas fa-pause" aria-hidden="true"></i> Pausar reproducción',
-      paused: '<i class="fas fa-play" aria-hidden="true"></i> Continuar reproducción'
-    };
-    master.innerHTML = labels[state];
-    master.setAttribute(
-      'aria-label',
-      state === 'playing' ? 'Pausar reproducción de audios' :
-      state === 'paused' ? 'Continuar reproducción de audios' :
-      'Reproducir todos los audios'
-    );
-  }
-
-  function clearHighlight(audio) {
-    const item = audio && audio.closest('.pronoun');
-    if (item) item.classList.remove('is-speaking');
-  }
-
-  function highlight(audio) {
-    audios.forEach(clearHighlight);
-    const item = audio && audio.closest('.pronoun');
-    if (item) item.classList.add('is-speaking');
-  }
-
-  function pauseOthers(keep) {
-    audios.forEach(audio => {
-      if (audio !== keep && !audio.paused) audio.pause();
-    });
-  }
-
-  function resetPlaylist() {
-    playlistActive = false;
-    playlistPaused = false;
-    advancing = false;
-    activeAudio = null;
-    currentIndex = 0;
-    runToken++;
-    showState('ready');
-  }
-
-  async function playCurrent(token) {
-    if (!playlistActive || playlistPaused || token !== runToken) return;
-
-    if (currentIndex >= audios.length) {
-      resetPlaylist();
-      return;
-    }
-
-    const audio = audios[currentIndex];
-    activeAudio = audio;
-    pauseOthers(audio);
-
-    try {
-      // Reanuda el mismo elemento, conservando currentTime.
-      await audio.play();
-      // No avanzar aquí: solo el evento "ended" pasa al siguiente.
-    } catch (error) {
-      // Pausar durante el inicio puede cancelar play(); no debe saltar de audio.
-      if (token !== runToken || playlistPaused || !playlistActive) return;
-      if (error && error.name === 'AbortError') return;
-
-      // Si el archivo no se puede cargar/reproducir, intenta el siguiente.
-      advanceToNext(audio, token);
-    }
-  }
-
-  function advanceToNext(finishedAudio, token) {
-    if (advancing || token !== runToken || !playlistActive || playlistPaused) return;
-    if (finishedAudio && finishedAudio !== activeAudio) return;
-
-    advancing = true;
-    clearHighlight(finishedAudio);
-    activeAudio = null;
-    currentIndex += 1;
-    advancing = false;
-    playCurrent(token);
-  }
-
-  audios.forEach((audio, index) => {
-    audio.addEventListener('play', () => {
-      pauseOthers(audio);
-
-      // Si el usuario inicia un reproductor individual, la lista se detiene.
-      if (playlistActive && audio !== activeAudio) {
-        playlistActive = false;
-        playlistPaused = false;
-        runToken++;
-        showState('ready');
-      }
-      activeAudio = audio;
-    });
-
-    audio.addEventListener('playing', () => {
-      highlight(audio);
-      if (playlistActive && audio === activeAudio && !playlistPaused) {
-        showState('playing');
-      }
-    });
-
-    audio.addEventListener('pause', () => {
-      clearHighlight(audio);
-      // No se cambia el índice ni se reinicia la posición al pausar.
-      if (playlistActive && playlistPaused && audio === activeAudio) {
-        showState('paused');
-      }
-    });
-
-    audio.addEventListener('ended', () => {
-      clearHighlight(audio);
-      if (playlistActive && !playlistPaused && index === currentIndex && audio === activeAudio) {
-        advanceToNext(audio, runToken);
-      } else if (!playlistActive && audio === activeAudio) {
-        activeAudio = null;
-      }
-    });
-
-    audio.addEventListener('error', () => {
-      clearHighlight(audio);
-      if (playlistActive && !playlistPaused && index === currentIndex && audio === activeAudio) {
-        advanceToNext(audio, runToken);
-      }
-    });
-  });
-
-  master.type = 'button';
-  master.addEventListener('click', async event => {
-    event.preventDefault();
-
-    // Pausar: conservar el audio actual y su currentTime.
-    if (playlistActive && !playlistPaused) {
-      playlistPaused = true;
-      if (activeAudio) activeAudio.pause();
-      showState('paused');
-      return;
-    }
-
-    // Reanudar: reproducir el mismo elemento, no volver a empezar ni saltar.
-    if (playlistActive && playlistPaused) {
-      playlistPaused = false;
-      showState('playing');
-      const token = runToken;
-      if (activeAudio) {
-        pauseOthers(activeAudio);
-        try {
-          await activeAudio.play();
-        } catch (error) {
-          if (token === runToken && playlistActive && !playlistPaused &&
-              error && error.name !== 'AbortError') {
-            advanceToNext(activeAudio, token);
-          }
-        }
-      } else {
-        playCurrent(token);
-      }
-      return;
-    }
-
-    // Inicio nuevo desde el primer audio.
-    runToken++;
-    playlistActive = true;
-    playlistPaused = false;
-    currentIndex = 0;
-    advancing = false;
-    audios.forEach(audio => {
-      audio.pause();
-      try { audio.currentTime = 0; } catch (_) {}
-      clearHighlight(audio);
-    });
-    activeAudio = null;
-    showState('playing');
-    playCurrent(runToken);
-  });
-
-  showState('ready');
-  window.addEventListener('pagehide', () => audios.forEach(audio => audio.pause()));
+<style id="premium-refinement-2026">
+:root{--premium-bg:#080e19;--premium-panel:#101b2b;--premium-line:rgba(169,190,216,.17);--premium-gold:#d8b66c;--premium-green:#35d995;--premium-muted:#9eacc0}
+html{scroll-behavior:smooth}body{background:radial-gradient(ellipse at 12% 0%,rgba(39,75,111,.25),transparent 38%),linear-gradient(145deg,#070c15,#0b1422 55%,#080d17)!important;color:#edf3fb!important;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif!important;line-height:1.6}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(to bottom,black,transparent 80%);z-index:-1}
+.section,#questions-section,.contacto{background:linear-gradient(155deg,rgba(19,32,49,.96),rgba(10,19,32,.96))!important;border:1px solid var(--premium-line)!important;border-radius:20px!important;box-shadow:0 18px 48px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.035)!important;padding:clamp(18px,3vw,30px)!important;margin:22px auto!important;max-width:1180px}
+h1,h2,h3{color:#f4f7fc!important;letter-spacing:.01em}h2{font-weight:750!important;border-bottom:1px solid rgba(216,182,108,.25);padding-bottom:12px}
+.pronoun{background:linear-gradient(120deg,rgba(24,40,60,.92),rgba(13,25,40,.92))!important;border:1px solid var(--premium-line)!important;border-radius:14px!important;padding:14px 16px!important;margin:9px 0!important;box-shadow:0 5px 18px rgba(0,0,0,.13)!important;transition:border-color .2s,transform .2s,background .2s!important}
+.pronoun:hover{border-color:rgba(216,182,108,.5)!important;transform:translateY(-1px)}.pronoun .text,.pronoun>span{color:#e7edf6!important;line-height:1.55}.pronoun span[style*="red"]{color:#e9c77f!important}
+.audio{accent-color:var(--premium-gold);max-width:100%}.fixed-button,button,#nextBtn,#validateBtn,#downloadBtn{border:1px solid rgba(216,182,108,.48)!important;border-radius:12px!important;background:linear-gradient(135deg,#d9bb7b,#b78d45)!important;color:#101722!important;font-weight:750!important;padding:11px 17px!important;box-shadow:0 8px 22px rgba(0,0,0,.2)!important;cursor:pointer;transition:transform .18s,filter .18s!important}
+button:hover,.fixed-button:hover{transform:translateY(-2px);filter:brightness(1.08)}button:focus-visible,a:focus-visible,audio:focus-visible{outline:3px solid #70ddb0!important;outline-offset:3px}
+a{color:#e6c982}.divider{opacity:.25}.pronoun.is-speaking{border-color:rgba(53,217,149,.8)!important;background:linear-gradient(110deg,rgba(20,74,58,.48),rgba(13,31,43,.96))!important;box-shadow:0 0 0 1px rgba(53,217,149,.16),0 8px 26px rgba(0,0,0,.2)!important}
+.pronoun.is-speaking .text,.pronoun.is-speaking>span,.pronoun.is-speaking span{color:#55e6a5!important;text-shadow:0 0 12px rgba(53,217,149,.16)}
+#questions-section{scroll-margin-top:25px}#question-counter{color:var(--premium-muted)}
+@media(max-width:700px){.section,#questions-section,.contacto{margin:12px!important;padding:16px!important;border-radius:15px!important}.pronoun{display:flex;flex-wrap:wrap;gap:10px!important}.audio{width:100%;min-width:0}.fixed-button{position:fixed;right:12px!important;bottom:12px!important;top:auto!important;z-index:99}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+<script id="stable-audio-playback-2026">
+(()=>{'use strict';
+ const master=document.getElementById('playButton');
+ const audios=[...document.querySelectorAll('audio')];
+ if(!master||!audios.length)return;
+ let mode='idle',index=0,current=null,token=0,manual=false;
+ const label={idle:'▶ Reproducir todos',playing:'Ⅱ Pausar reproducción',paused:'▶ Continuar reproducción'};
+ function paint(){master.textContent=label[mode];master.setAttribute('aria-label',label[mode]);master.setAttribute('aria-pressed',String(mode==='playing'));}
+ function clear(a){a?.closest('.pronoun')?.classList.remove('is-speaking');}
+ function mark(a){audios.forEach(clear);a?.closest('.pronoun')?.classList.add('is-speaking');}
+ function stopOthers(keep){audios.forEach(a=>{if(a!==keep&&!a.paused)a.pause();});}
+ function finish(){mode='idle';current=null;index=0;token++;audios.forEach(clear);paint();}
+ function next(myToken){if(myToken!==token||mode!=='playing')return; if(index>=audios.length){finish();return;} const a=audios[index];current=a;stopOthers(a);a.preload='auto';
+   // Call play directly from the click-started flow; rely on media events for sequencing.
+   const promise=a.play(); if(promise&&typeof promise.catch==='function')promise.catch(err=>{if(myToken!==token||mode!=='playing')return;if(err?.name==='AbortError')return;skip(a,myToken);});
+ }
+ function skip(a,myToken){if(myToken!==token||mode!=='playing'||a!==current)return;clear(a);index++;current=null;next(myToken);}
+ audios.forEach((a,i)=>{
+   a.addEventListener('play',()=>{stopOthers(a);mark(a);if(mode==='playing'&&a===current)paint();});
+   a.addEventListener('playing',()=>mark(a));
+   a.addEventListener('ended',()=>{clear(a);if(mode==='playing'&&a===current&&i===index){index++;current=null;next(token);}else if(current===a&&mode!=='playing')current=null;});
+   a.addEventListener('error',()=>{clear(a);if(mode==='playing'&&a===current)skip(a,token);});
+   a.addEventListener('pause',()=>{clear(a);});
+   a.addEventListener('seeking',()=>{if(a===current&&mode==='playing')mark(a);});
+ });
+ master.type='button';master.addEventListener('click',()=>{
+   if(mode==='playing'){mode='paused';if(current)current.pause();paint();return;}
+   if(mode==='paused'){mode='playing';paint();if(current){stopOthers(current);const t=token;const p=current.play();if(p&&p.catch)p.catch(e=>{if(t===token&&mode==='playing'&&e?.name!=='AbortError')skip(current,t);});}else next(token);return;}
+   token++;mode='playing';index=0;current=null;audios.forEach(a=>{a.pause();try{a.currentTime=0;}catch(e){}clear(a);});paint();next(token);
+ });
+ // Individual player use does not corrupt the playlist state.
+ audios.forEach(a=>a.addEventListener('play',()=>{if(mode==='playing'&&a!==current){token++;mode='idle';current=a;index=0;paint();}}));
+ paint();window.addEventListener('pagehide',()=>audios.forEach(a=>a.pause()));
 })();
 </script>
 
-<style id="audio-playing-highlight-v3">
-/* La frase en inglés se ilumina en verde mientras su audio está sonando. */
-.pronoun.is-speaking > span:first-child {
-  color: #35e58b !important;
-  text-shadow: 0 0 10px rgba(53, 229, 139, .28);
-  transition: color .18s ease, text-shadow .18s ease;
-}
-.pronoun.is-speaking {
-  border-color: rgba(53, 229, 139, .55) !important;
-  box-shadow: 0 0 0 1px rgba(53, 229, 139, .12), 0 8px 24px rgba(0, 0, 0, .18);
-}
-</style>
+
+<script src="questioninglis.js"></script>
 </body>
 </html>
