@@ -3658,9 +3658,10 @@ footer.contacto{box-sizing:border-box;width:min(1120px,100%);margin:38px auto 0!
 
 </style>
 
-<script id="audio-controls-repair-2026">
+<script id="audio-controls-repair-2026-v3">
 (() => {
   'use strict';
+
   const master = document.getElementById('playButton');
   const audios = Array.from(document.querySelectorAll('audio'));
   if (!master || !audios.length) return;
@@ -3669,7 +3670,8 @@ footer.contacto{box-sizing:border-box;width:min(1120px,100%);margin:38px auto 0!
   let playlistPaused = false;
   let currentIndex = 0;
   let runToken = 0;
-  let expectedAudio = null;
+  let activeAudio = null;
+  let advancing = false;
 
   function showState(state) {
     const labels = {
@@ -3678,103 +3680,172 @@ footer.contacto{box-sizing:border-box;width:min(1120px,100%);margin:38px auto 0!
       paused: '<i class="fas fa-play" aria-hidden="true"></i> Continuar reproducción'
     };
     master.innerHTML = labels[state];
-    master.setAttribute('aria-label', state === 'playing' ? 'Pausar reproducción de audios' : state === 'paused' ? 'Continuar reproducción de audios' : 'Reproducir todos los audios');
+    master.setAttribute(
+      'aria-label',
+      state === 'playing' ? 'Pausar reproducción de audios' :
+      state === 'paused' ? 'Continuar reproducción de audios' :
+      'Reproducir todos los audios'
+    );
   }
 
-  function stopOthers(active) {
-    for (const item of audios) {
-      if (item !== active && !item.paused) item.pause();
-    }
+  function clearHighlight(audio) {
+    const item = audio && audio.closest('.pronoun');
+    if (item) item.classList.remove('is-speaking');
   }
 
-  function finishPlaylist() {
+  function highlight(audio) {
+    audios.forEach(clearHighlight);
+    const item = audio && audio.closest('.pronoun');
+    if (item) item.classList.add('is-speaking');
+  }
+
+  function pauseOthers(keep) {
+    audios.forEach(audio => {
+      if (audio !== keep && !audio.paused) audio.pause();
+    });
+  }
+
+  function resetPlaylist() {
     playlistActive = false;
     playlistPaused = false;
-    expectedAudio = null;
+    advancing = false;
+    activeAudio = null;
     currentIndex = 0;
     runToken++;
     showState('ready');
   }
 
-  async function playIndex(index, token) {
+  async function playCurrent(token) {
     if (!playlistActive || playlistPaused || token !== runToken) return;
-    if (index >= audios.length) {
-      finishPlaylist();
+
+    if (currentIndex >= audios.length) {
+      resetPlaylist();
       return;
     }
 
-    currentIndex = index;
-    const audio = audios[index];
-    if (!audio) return playIndex(index + 1, token);
+    const audio = audios[currentIndex];
+    activeAudio = audio;
+    pauseOthers(audio);
 
-    stopOthers(audio);
-    expectedAudio = audio;
     try {
-      // Mantiene el mismo elemento y su posición al reanudar.
+      // Reanuda el mismo elemento, conservando currentTime.
       await audio.play();
-      if (token === runToken && playlistActive && !playlistPaused) showState('playing');
-    } catch (err) {
-      // Si este archivo no puede reproducirse, intenta el siguiente.
-      if (token === runToken && playlistActive && !playlistPaused && expectedAudio === audio) {
-        expectedAudio = null;
-        playIndex(index + 1, token);
-      }
+      // No avanzar aquí: solo el evento "ended" pasa al siguiente.
+    } catch (error) {
+      // Pausar durante el inicio puede cancelar play(); no debe saltar de audio.
+      if (token !== runToken || playlistPaused || !playlistActive) return;
+      if (error && error.name === 'AbortError') return;
+
+      // Si el archivo no se puede cargar/reproducir, intenta el siguiente.
+      advanceToNext(audio, token);
     }
+  }
+
+  function advanceToNext(finishedAudio, token) {
+    if (advancing || token !== runToken || !playlistActive || playlistPaused) return;
+    if (finishedAudio && finishedAudio !== activeAudio) return;
+
+    advancing = true;
+    clearHighlight(finishedAudio);
+    activeAudio = null;
+    currentIndex += 1;
+    advancing = false;
+    playCurrent(token);
   }
 
   audios.forEach((audio, index) => {
     audio.addEventListener('play', () => {
-      stopOthers(audio);
-      // Un audio iniciado desde sus controles individuales cancela la lista,
-      // pero no interfiere con el audio que la lista acaba de iniciar.
-      if (playlistActive && audio !== expectedAudio) finishPlaylist();
+      pauseOthers(audio);
+
+      // Si el usuario inicia un reproductor individual, la lista se detiene.
+      if (playlistActive && audio !== activeAudio) {
+        playlistActive = false;
+        playlistPaused = false;
+        runToken++;
+        showState('ready');
+      }
+      activeAudio = audio;
+    });
+
+    audio.addEventListener('playing', () => {
+      highlight(audio);
+      if (playlistActive && audio === activeAudio && !playlistPaused) {
+        showState('playing');
+      }
+    });
+
+    audio.addEventListener('pause', () => {
+      clearHighlight(audio);
+      // No se cambia el índice ni se reinicia la posición al pausar.
+      if (playlistActive && playlistPaused && audio === activeAudio) {
+        showState('paused');
+      }
     });
 
     audio.addEventListener('ended', () => {
-      if (playlistActive && !playlistPaused && index === currentIndex && audio === expectedAudio) {
-        expectedAudio = null;
-        playIndex(index + 1, runToken);
+      clearHighlight(audio);
+      if (playlistActive && !playlistPaused && index === currentIndex && audio === activeAudio) {
+        advanceToNext(audio, runToken);
+      } else if (!playlistActive && audio === activeAudio) {
+        activeAudio = null;
       }
     });
 
     audio.addEventListener('error', () => {
-      if (playlistActive && !playlistPaused && index === currentIndex && audio === expectedAudio) {
-        expectedAudio = null;
-        playIndex(index + 1, runToken);
+      clearHighlight(audio);
+      if (playlistActive && !playlistPaused && index === currentIndex && audio === activeAudio) {
+        advanceToNext(audio, runToken);
       }
     });
   });
 
   master.type = 'button';
-  master.addEventListener('click', (event) => {
+  master.addEventListener('click', async event => {
     event.preventDefault();
 
+    // Pausar: conservar el audio actual y su currentTime.
     if (playlistActive && !playlistPaused) {
       playlistPaused = true;
-      const active = audios[currentIndex];
-      if (active) active.pause();
+      if (activeAudio) activeAudio.pause();
       showState('paused');
       return;
     }
 
+    // Reanudar: reproducir el mismo elemento, no volver a empezar ni saltar.
     if (playlistActive && playlistPaused) {
       playlistPaused = false;
+      showState('playing');
       const token = runToken;
-      playIndex(currentIndex, token);
+      if (activeAudio) {
+        pauseOthers(activeAudio);
+        try {
+          await activeAudio.play();
+        } catch (error) {
+          if (token === runToken && playlistActive && !playlistPaused &&
+              error && error.name !== 'AbortError') {
+            advanceToNext(activeAudio, token);
+          }
+        }
+      } else {
+        playCurrent(token);
+      }
       return;
     }
 
-    // Inicio nuevo: comienza desde el primer audio.
-    for (const audio of audios) {
-      audio.pause();
-      try { audio.currentTime = 0; } catch (_) {}
-    }
+    // Inicio nuevo desde el primer audio.
+    runToken++;
     playlistActive = true;
     playlistPaused = false;
     currentIndex = 0;
-    runToken++;
+    advancing = false;
+    audios.forEach(audio => {
+      audio.pause();
+      try { audio.currentTime = 0; } catch (_) {}
+      clearHighlight(audio);
+    });
+    activeAudio = null;
     showState('playing');
-    playIndex(0, runToken);
+    playCurrent(runToken);
   });
 
   showState('ready');
@@ -3782,13 +3853,16 @@ footer.contacto{box-sizing:border-box;width:min(1120px,100%);margin:38px auto 0!
 })();
 </script>
 
-
-<style id="audio-controls-usability-2026">
-.pronoun .audio { position:relative; z-index:2; min-width:0; pointer-events:auto; }
-.audio::-webkit-media-controls { display:flex !important; }
-.fixed-button { pointer-events:auto !important; }
-@media (max-width:760px) {
-  .pronoun .audio { flex:1 1 100% !important; width:100% !important; min-height:42px; }
+<style id="audio-playing-highlight-v3">
+/* La frase en inglés se ilumina en verde mientras su audio está sonando. */
+.pronoun.is-speaking > span:first-child {
+  color: #35e58b !important;
+  text-shadow: 0 0 10px rgba(53, 229, 139, .28);
+  transition: color .18s ease, text-shadow .18s ease;
+}
+.pronoun.is-speaking {
+  border-color: rgba(53, 229, 139, .55) !important;
+  box-shadow: 0 0 0 1px rgba(53, 229, 139, .12), 0 8px 24px rgba(0, 0, 0, .18);
 }
 </style>
 </body>
