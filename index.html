@@ -3535,5 +3535,139 @@ Have you ever marveled at the elegance of mathematical proofs? (<span style="col
 <!-- FIN DE CODIGO SCRIPT Y DEMAS ELEMENTOS*************************************************************************************** -->
 <script src="questioninglis.js"></script>
 
+
+<style id="premium-interface-redesign">
+:root{
+  --bg:#07111f;--panel:#101e30;--panel2:#14263b;--line:rgba(130,177,214,.20);
+  --cyan:#55d7ee;--gold:#d8b66b;--text:#eaf2fb;--muted:#9fb2c8;
+  --shadow:0 18px 48px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{
+  margin:0!important;padding:28px clamp(14px,3vw,46px) 0!important;
+  display:block!important;min-height:100vh;background:
+  radial-gradient(ellipse at 12% 0%,rgba(34,116,155,.20),transparent 38%),
+  radial-gradient(ellipse at 92% 12%,rgba(190,151,75,.12),transparent 30%),
+  linear-gradient(145deg,#07111f 0%,#0a1727 52%,#0c1b2d 100%)!important;
+  color:var(--text)!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important;
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+ background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+ background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+.corner-text,.corner-text2{
+ position:fixed!important;top:14px!important;z-index:10001!important;
+ color:var(--gold)!important;font-size:11px!important;font-weight:800!important;
+ letter-spacing:3px!important;text-shadow:0 0 18px rgba(216,182,107,.3)
+}
+.corner-text{left:20px!important}.corner-text2{right:20px!important}
+.category-section{
+ position:sticky!important;top:10px!important;z-index:9998!important;
+ display:flex!important;justify-content:center!important;align-items:center!important;
+ flex-wrap:wrap!important;gap:9px!important;width:min(1180px,100%)!important;
+ margin:24px auto 34px!important;padding:12px!important;
+ background:rgba(10,24,40,.88)!important;border:1px solid rgba(109,170,205,.28)!important;
+ border-radius:18px!important;box-shadow:0 14px 38px rgba(0,0,0,.32)!important;
+ backdrop-filter:blur(18px)
+}
+.category-dropdown{position:relative!important;float:none!important}
+.dropbtn{
+ min-height:42px!important;padding:10px 19px!important;border:1px solid rgba(85,215,238,.28)!important;
+ border-radius:11px!important;background:linear-gradient(135deg,#172c42,#102033)!important;
+ color:#eaf6ff!important;font-weight:700!important;font-size:13px!important;
+ letter-spacing:.25px;cursor:pointer;transition:.22s ease;box-shadow:inset 0 1px rgba(255,255,255,.06)
+}
+.dropbtn:hover,.dropbtn:focus-visible{
+ border-color:var(--gold)!important;color:var(--gold)!important;
+ transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.25),0 0 0 3px rgba(216,182,107,.08)
+}
+.dropdown-content{
+ border:1px solid rgba(85,215,238,.22)!important;border-radius:14px!important;
+ background:rgba(12,27,44,.98)!important;box-shadow:var(--shadow)!important;
+ max-height:min(70vh,620px);overflow-y:auto;min-width:230px!important;
+ padding:8px!important;backdrop-filter:blur(18px)
+}
+.dropdown-content a{
+ display:block;padding:10px 12px!important;border-radius:8px!important;
+ color:#dce9f6!important;font-size:13px!important;text-decoration:none!important;
+ transition:background .18s,color .18s,padding .18s
+}
+.dropdown-content a:hover{background:rgba(85,215,238,.10)!important;color:var(--cyan)!important;padding-left:17px!important}
+.section{
+ width:min(1050px,100%)!important;margin:24px auto!important;padding:clamp(20px,3vw,34px)!important;
+ float:none!important;clear:both;border:1px solid var(--line)!important;border-radius:22px!important;
+ background:linear-gradient(145deg,rgba(20,38,59,.96),rgba(12,27,44,.96))!important;
+ box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.045)!important;
+ position:relative;overflow:hidden
+}
+.section:before{
+ content:"";position:absolute;left:0;top:0;width:100%;height:3px;
+ background:linear-gradient(90deg,transparent,var(--cyan),var(--gold),transparent);opacity:.8
+}
+.section h2{
+ margin:0 0 22px!important;padding:0 0 14px!important;
+ color:#f4f8ff!important;font-size:clamp(20px,2.2vw,27px)!important;
+ font-weight:800!important;letter-spacing:.2px!important;line-height:1.25;
+ border-bottom:1px solid rgba(125,174,208,.2)!important
+}
+.section h2:after{content:"";display:block;width:54px;height:3px;margin-top:13px;border-radius:4px;background:linear-gradient(90deg,var(--cyan),var(--gold))}
+.section ul{padding-left:0!important;list-style:none!important;margin:0!important}
+.pronoun{
+ list-style:none!important;display:flex!important;align-items:center!important;justify-content:space-between!important;
+ flex-wrap:wrap;gap:14px!important;margin:10px 0!important;padding:16px 18px!important;
+ border:1px solid rgba(128,169,202,.16)!important;border-radius:14px!important;
+ background:linear-gradient(110deg,rgba(26,48,70,.86),rgba(16,33,52,.86))!important;
+ color:#e7f0fa!important;box-shadow:inset 0 1px rgba(255,255,255,.025);
+ transition:border-color .2s,transform .2s,background .2s
+}
+.pronoun:hover{border-color:rgba(85,215,238,.48)!important;transform:translateY(-2px);background:linear-gradient(110deg,rgba(30,59,81,.95),rgba(17,38,59,.95))!important}
+.pronoun .text,.pronoun>span{font-size:15px!important;line-height:1.65;color:#eaf2fb!important;flex:1 1 260px}
+.pronoun .text span[style*="red"],.pronoun span[style*="red"]{color:#f0c978!important}
+.divider{display:none!important}
+audio.audio{width:min(290px,100%)!important;height:38px!important;filter:sepia(12%) saturate(75%) hue-rotate(155deg);border-radius:30px}
+.fixed-button{
+ position:fixed!important;right:22px!important;top:auto!important;bottom:22px!important;
+ transform:none!important;z-index:9999!important;padding:14px 20px!important;
+ border:1px solid rgba(216,182,107,.75)!important;border-radius:13px!important;
+ background:linear-gradient(135deg,#d8b66b,#a9823f)!important;color:#101b29!important;
+ font-weight:800!important;font-size:13px!important;letter-spacing:.2px;
+ box-shadow:0 10px 28px rgba(0,0,0,.35)!important;transition:.2s
+}
+.fixed-button:hover{background:linear-gradient(135deg,#f0d28e,#c39a51)!important;transform:translateY(-3px)!important}
+#toggleButton,#nextBtn,#validateBtn,#downloadBtn{
+ border:1px solid rgba(85,215,238,.4)!important;border-radius:10px!important;
+ padding:11px 18px!important;background:linear-gradient(135deg,#173a50,#123047)!important;
+ color:#eaf7ff!important;font-weight:700!important;cursor:pointer!important;transition:.2s
+}
+#toggleButton:hover,#nextBtn:hover,#validateBtn:hover,#downloadBtn:hover{
+ border-color:var(--gold)!important;color:var(--gold)!important;transform:translateY(-2px)
+}
+#questions-section{margin-bottom:42px!important}
+#question-counter{color:var(--gold)!important;font-weight:700}
+#questions-list li{padding:12px!important;border-radius:10px;background:rgba(85,215,238,.06);margin:8px 0}
+footer.contacto{
+ width:calc(100% + clamp(28px,6vw,92px))!important;margin:55px calc(clamp(14px,3vw,46px)*-1) 0!important;
+ padding:48px 20px!important;background:linear-gradient(135deg,#081522,#10263a)!important;
+ border-top:1px solid rgba(85,215,238,.25)!important;color:#c7d7e7!important
+}
+.contacto h2{color:var(--cyan)!important;font-size:26px!important;letter-spacing:.4px}
+.contacto p{line-height:1.8!important}.contacto-lista li{font-size:14px!important}
+.copy{color:#8fa6bc!important}
+a:focus-visible,button:focus-visible,audio:focus-visible{outline:2px solid var(--gold)!important;outline-offset:3px}
+@media(max-width:700px){
+ body{padding:18px 12px 0!important}
+ .category-section{position:relative!important;top:auto!important;margin:24px auto!important;border-radius:15px!important}
+ .category-dropdown{flex:1 1 42%!important}
+ .dropbtn{width:100%!important;padding:10px 8px!important}
+ .section{padding:19px 14px!important;margin:16px auto!important;border-radius:17px!important}
+ .pronoun{padding:13px!important;gap:10px!important}
+ .pronoun .text,.pronoun>span{flex-basis:100%;font-size:14px!important}
+ audio.audio{width:100%!important;max-width:100%!important}
+ .fixed-button{right:12px!important;bottom:12px!important;padding:12px 15px!important}
+ footer.contacto{width:calc(100% + 24px)!important;margin-left:-12px!important;margin-right:-12px!important}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+
 </body>
 </html>
