@@ -3676,42 +3676,253 @@ a{color:#e6c982}.divider{opacity:.25}.pronoun.is-speaking{border-color:rgba(53,2
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
 </style>
 <script id="stable-audio-playback-2026">
-(()=>{'use strict';
- const master=document.getElementById('playButton');
- const audios=[...document.querySelectorAll('audio')];
- if(!master||!audios.length)return;
- let mode='idle',index=0,current=null,token=0,manual=false;
- const label={idle:'▶ Reproducir todos',playing:'Ⅱ Pausar reproducción',paused:'▶ Continuar reproducción'};
- function paint(){master.textContent=label[mode];master.setAttribute('aria-label',label[mode]);master.setAttribute('aria-pressed',String(mode==='playing'));}
- function clear(a){a?.closest('.pronoun')?.classList.remove('is-speaking');}
- function mark(a){audios.forEach(clear);a?.closest('.pronoun')?.classList.add('is-speaking');}
- function stopOthers(keep){audios.forEach(a=>{if(a!==keep&&!a.paused)a.pause();});}
- function finish(){mode='idle';current=null;index=0;token++;audios.forEach(clear);paint();}
- function next(myToken){if(myToken!==token||mode!=='playing')return; if(index>=audios.length){finish();return;} const a=audios[index];current=a;stopOthers(a);a.preload='auto';
-   // Call play directly from the click-started flow; rely on media events for sequencing.
-   const promise=a.play(); if(promise&&typeof promise.catch==='function')promise.catch(err=>{if(myToken!==token||mode!=='playing')return;if(err?.name==='AbortError')return;skip(a,myToken);});
- }
- function skip(a,myToken){if(myToken!==token||mode!=='playing'||a!==current)return;clear(a);index++;current=null;next(myToken);}
- audios.forEach((a,i)=>{
-   a.addEventListener('play',()=>{stopOthers(a);mark(a);if(mode==='playing'&&a===current)paint();});
-   a.addEventListener('playing',()=>mark(a));
-   a.addEventListener('ended',()=>{clear(a);if(mode==='playing'&&a===current&&i===index){index++;current=null;next(token);}else if(current===a&&mode!=='playing')current=null;});
-   a.addEventListener('error',()=>{clear(a);if(mode==='playing'&&a===current)skip(a,token);});
-   a.addEventListener('pause',()=>{clear(a);});
-   a.addEventListener('seeking',()=>{if(a===current&&mode==='playing')mark(a);});
- });
- master.type='button';master.addEventListener('click',()=>{
-   if(mode==='playing'){mode='paused';if(current)current.pause();paint();return;}
-   if(mode==='paused'){mode='playing';paint();if(current){stopOthers(current);const t=token;const p=current.play();if(p&&p.catch)p.catch(e=>{if(t===token&&mode==='playing'&&e?.name!=='AbortError')skip(current,t);});}else next(token);return;}
-   token++;mode='playing';index=0;current=null;audios.forEach(a=>{a.pause();try{a.currentTime=0;}catch(e){}clear(a);});paint();next(token);
- });
- // Individual player use does not corrupt the playlist state.
- audios.forEach(a=>a.addEventListener('play',()=>{if(mode==='playing'&&a!==current){token++;mode='idle';current=a;index=0;paint();}}));
- paint();window.addEventListener('pagehide',()=>audios.forEach(a=>a.pause()));
+(() => {
+  'use strict';
+  const master = document.getElementById('playButton');
+  const audios = [...document.querySelectorAll('audio')];
+  if (!master || !audios.length) return;
+
+  let mode = 'idle'; // idle | playing | paused
+  let index = 0;
+  let current = null;
+  let token = 0;
+
+  const label = {
+    idle: '▶ Reproducir todos',
+    playing: 'Ⅱ Pausar reproducción',
+    paused: '▶ Continuar reproducción'
+  };
+
+  function paint() {
+    master.textContent = label[mode];
+    master.setAttribute('aria-label', label[mode]);
+    master.setAttribute('aria-pressed', String(mode === 'playing'));
+  }
+
+  function clear(a) {
+    const item = a?.closest('.pronoun');
+    if (!item) return;
+    item.classList.remove('is-speaking');
+    item.querySelectorAll('.eng-highlight').forEach(el => {
+      el.classList.remove('eng-highlight');
+    });
+  }
+
+  function mark(a) {
+    audios.forEach(clear);
+    const item = a?.closest('.pronoun');
+    if (!item) return;
+    item.classList.add('is-speaking');
+
+    // Resaltar el texto en rojo (inglés) manteniendo el verde del contenedor
+    item.querySelectorAll('span[style*="color: red"], span[style*="color:red"], span[style*="color: #"], .text[lang="es"]').forEach(el => {
+      // Solo si parece inglés o es el span rojo típico
+      el.classList.add('eng-highlight');
+    });
+    // También resaltar spans rojos dentro de .text
+    item.querySelectorAll('.text span[style*="red"], span[style*="red"]').forEach(el => {
+      el.classList.add('eng-highlight');
+    });
+
+    // Scroll automático suave hacia el elemento que se está reproduciendo
+    try {
+      item.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'nearest'
+      });
+    } catch (e) {
+      item.scrollIntoView(true);
+    }
+  }
+
+  function stopOthers(keep) {
+    audios.forEach(a => {
+      if (a !== keep && !a.paused) a.pause();
+    });
+  }
+
+  function finish() {
+    mode = 'idle';
+    current = null;
+    index = 0;
+    token++;
+    audios.forEach(clear);
+    paint();
+  }
+
+  function playAudio(a, myToken) {
+    if (myToken !== token || mode !== 'playing') return;
+    current = a;
+    stopOthers(a);
+    a.preload = 'auto';
+    mark(a);
+
+    const promise = a.play();
+    if (promise && typeof promise.catch === 'function') {
+      promise.catch(err => {
+        if (myToken !== token || mode !== 'playing') return;
+        if (err?.name === 'AbortError') return;
+        skip(a, myToken);
+      });
+    }
+  }
+
+  function next(myToken) {
+    if (myToken !== token || mode !== 'playing') return;
+    if (index >= audios.length) {
+      finish();
+      return;
+    }
+    playAudio(audios[index], myToken);
+  }
+
+  function skip(a, myToken) {
+    if (myToken !== token || mode !== 'playing' || a !== current) return;
+    clear(a);
+    index++;
+    current = null;
+    next(myToken);
+  }
+
+  // Eventos de cada audio
+  audios.forEach((a, i) => {
+    a.addEventListener('play', () => {
+      stopOthers(a);
+      mark(a);
+    });
+
+    a.addEventListener('playing', () => {
+      mark(a);
+    });
+
+    a.addEventListener('ended', () => {
+      clear(a);
+      if (mode === 'playing' && a === current && i === index) {
+        index++;
+        current = null;
+        next(token);
+      } else if (current === a && mode !== 'playing') {
+        current = null;
+      }
+    });
+
+    a.addEventListener('error', () => {
+      clear(a);
+      if (mode === 'playing' && a === current) skip(a, token);
+    });
+
+    a.addEventListener('pause', () => {
+      // No quitamos el resaltado si estamos en modo paused (lista pausada)
+      if (mode !== 'paused') clear(a);
+    });
+  });
+
+  // Botón principal
+  master.type = 'button';
+  master.addEventListener('click', () => {
+    // PAUSAR
+    if (mode === 'playing') {
+      mode = 'paused';
+      if (current) {
+        current.pause();
+        mark(current); // mantener verde + texto rojo resaltado
+      }
+      paint();
+      return;
+    }
+
+    // REANUDAR
+    if (mode === 'paused') {
+      mode = 'playing';
+      paint();
+
+      if (current && !current.ended) {
+        const realIndex = audios.indexOf(current);
+        if (realIndex !== -1) index = realIndex;
+        stopOthers(current);
+        mark(current);
+        const t = token;
+        const p = current.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch(e => {
+            if (t !== token || mode !== 'playing') return;
+            if (e?.name === 'AbortError') return;
+            skip(current, t);
+          });
+        }
+        return;
+      }
+
+      // El actual ya terminó → siguiente
+      if (current) {
+        clear(current);
+        index = audios.indexOf(current) + 1;
+        current = null;
+      }
+      next(token);
+      return;
+    }
+
+    // EMPEZAR DESDE EL PRINCIPIO
+    token++;
+    mode = 'playing';
+    index = 0;
+    current = null;
+    audios.forEach(a => {
+      a.pause();
+      try { a.currentTime = 0; } catch (e) {}
+      clear(a);
+    });
+    paint();
+    next(token);
+  });
+
+  // Si el usuario reproduce un audio individual, cancela la lista
+  audios.forEach(a => {
+    a.addEventListener('play', () => {
+      if (mode === 'playing' && a !== current) {
+        token++;
+        mode = 'idle';
+        current = a;
+        index = 0;
+        paint();
+      }
+    });
+  });
+
+  paint();
+  window.addEventListener('pagehide', () => audios.forEach(a => a.pause()));
 })();
 </script>
 
 
 <script src="questioninglis.js"></script>
+
+<style id="audio-highlight-scroll-2026">
+/* Resaltado del texto en rojo (inglés) mientras se reproduce */
+.pronoun.is-speaking .eng-highlight,
+.pronoun.is-speaking span[style*="color: red"],
+.pronoun.is-speaking span[style*="color:red"] {
+  color: #ff6b6b !important;
+  background: rgba(255, 107, 107, 0.18) !important;
+  padding: 1px 4px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 0 0 1px rgba(255, 107, 107, 0.35) !important;
+  font-weight: 700 !important;
+  transition: background .2s, box-shadow .2s;
+}
+/* El contenedor sigue con el verde de is-speaking */
+.pronoun.is-speaking {
+  border-color: rgba(53, 217, 149, 0.85) !important;
+  background: linear-gradient(110deg, rgba(20, 74, 58, 0.48), rgba(13, 31, 43, 0.96)) !important;
+  box-shadow: 0 0 0 1px rgba(53, 217, 149, 0.2), 0 8px 26px rgba(0, 0, 0, 0.2) !important;
+}
+.pronoun.is-speaking .text,
+.pronoun.is-speaking > span {
+  color: #55e6a5 !important;
+}
+</style>
+
 </body>
 </html>
